@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>jQuery.Dynamiclist</id>
+        <version>1.0</version>
+        <authors>John Rummell</authors>
+        <owners>John Rummell</owners>
+        <!--<licenseUrl>http://www.gnu.org/licenses/gpl.html</licenseUrl>-->
+        <projectUrl>https://bitbucket.org/jrummell/jquery.dynamiclist/</projectUrl>
+        <!--<iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>-->
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>A jQuery UI plugin for MVC that supports adding and removing items from a list Model.</description>
+        <tags>jquery jQueryUI jQueryMobile plugin list</tags>
+        <dependencies>
+            <dependency id="jQuery.UI.Combined" />
+            <dependency id="jQuery.Validation" />            
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="..\js\jquery.dynamiclist*.js" target="content\Scripts"/>
+        <file src="..\js\jquery.validate.unobtrusive.dynamic*.js" target="content\Scripts"/>
+    </files>
+</package>
