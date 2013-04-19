@@ -1,0 +1,11 @@
+﻿@model DynamicListItemModel
+<li class="item">
+    <div>
+        @Html.EditorFor(model => model.Id)
+        @Html.ValidationMessageFor(model => model.Id)
+    </div>
+    <div>
+        @Html.EditorFor(model => model.Name)
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+</li>
