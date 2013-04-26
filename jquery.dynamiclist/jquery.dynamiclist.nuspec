@@ -13,11 +13,11 @@
         <tags>jquery jQueryUI jQueryMobile plugin list</tags>
         <dependencies>
             <dependency id="jQuery.UI.Combined" />
-            <dependency id="jQuery.Validation" />            
+            <dependency id="Microsoft.jQuery.Unobtrusive.Validation" />            
         </dependencies>
     </metadata>
     <files>
-        <file src="..\js\jquery.dynamiclist*.js" target="content\Scripts"/>
-        <file src="..\js\jquery.validate.unobtrusive.dynamic*.js" target="content\Scripts"/>
+        <file src="Scripts\jquery.dynamiclist*.js" target="content\Scripts"/>
+        <file src="Scripts\jquery.validate.unobtrusive.dynamic*.js" target="content\Scripts"/>
     </files>
 </package>
