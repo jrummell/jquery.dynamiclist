@@ -180,12 +180,14 @@
     <Content Include="Scripts\jquery-ui-1.10.2.js" />
     <Content Include="Scripts\jquery-ui-1.10.2.min.js" />
     <Content Include="Scripts\jquery.dynamiclist.js" />
+    <Content Include="Scripts\jquery.dynamiclist.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.dynamic.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.dynamic.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -209,6 +211,9 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Minify.exe.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="jquery.dynamiclist.nuspec" />
     <Content Include="Views\Home\EditorTemplates\DynamicListItemModel.cshtml" />
     <Content Include="Views\Home\EditorTemplates\DynamicTableItemModel.cshtml" />
@@ -216,6 +221,12 @@
     <Content Include="Views\Home\NewListItem.cshtml" />
     <Content Include="Views\Home\NewTableItem.cshtml" />
     <None Include="Scripts\jquery-1.9.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Minify\Minify.csproj">
+      <Project>{D8AA2967-1E7A-4FCB-A4BA-EFD0DAC32AB7}</Project>
+      <Name>Minify</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -246,6 +257,13 @@
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>echo Minifying ....
+cd "$(ProjectDir)"
+"$(TargetDir)Minify.exe" -source:Scripts\jquery.dynamiclist.js -out:Scripts\jquery.dynamiclist.min.js -type:js
+"$(TargetDir)Minify.exe" -source:Scripts\jquery.validate.unobtrusive.dynamic.js -out:Scripts\jquery.validate.unobtrusive.dynamic.min.js -type:js
+echo Done.</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
