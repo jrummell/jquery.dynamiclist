@@ -1,18 +1,70 @@
-﻿<!DOCTYPE html>
+﻿@{
+    string ui = Request["ui"];
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content/themes/base/css")
+
+    @if (ui == "kendo")
+    {
+        <link rel="stylesheet" type="text/css" href="~/Content/kendo/2013.1.319/kendo.common.min.css" />
+        <link rel="stylesheet" type="text/css" href="~/Content/kendo/2013.1.319/kendo.default.min.css" />
+    }
+    else if (ui == "mobile")
+    {
+        <link rel="stylesheet" type="text/css" href="~/Content/jquery.mobile-1.3.1.min.css" />
+    }
+    else
+    {
+        @Styles.Render("~/Content/themes/base/css")
+    }
+
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("styles", required: false)
 </head>
-<body>
-    @RenderBody()
+    <body>
+        <div> Select a UI framework:
+            <select id="uiSelect">
+                <option value="ui">jQuery UI</option>
+                <option value="mobile">jQuery Mobile</option>
+                <option value="kendo">Kendo UI</option>
+            </select>
+        </div>
 
-    @Scripts.Render("~/bundles/jquery", "~/bundles/jqueryui", "~/bundles/jqueryval")
-    @RenderSection("scripts", required: false)
-</body>
+        @RenderBody()
+
+        @Scripts.Render("~/bundles/jquery", "~/bundles/jqueryval")
+
+        @if (Request["ui"] == "kendo")
+        {
+            <script src="~/Scripts/kendo/2013.1.319/kendo.web.min.js"></script>
+        }
+        else if (Request["ui"] == "mobile")
+        {
+            <script src="~/Scripts/jquery.mobile-1.3.1.js"></script>
+        }
+        else
+        {
+            @Scripts.Render("~/bundles/jqueryui")
+        }
+
+        @RenderSection("scripts", required: false)
+        <script type="text/javascript">
+        <!--
+            $(document).ready(function()
+            {
+                $("#uiSelect").val("@ui");
+
+                $("#uiSelect").change(function()
+                {
+                    window.location = "?ui=" + $(this).val();
+                });
+            });
+        // -->
+    </script>
+    </body>
 </html>

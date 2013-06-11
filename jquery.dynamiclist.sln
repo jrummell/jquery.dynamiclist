@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jquery.dynamiclist", "jquery.dynamiclist\jquery.dynamiclist.csproj", "{9059A42E-A4E1-4AFD-A2EF-5F0082D38154}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6CDEE989-D454-45B1-ABBD-017B18D988C1}"
@@ -36,8 +36,8 @@ Global
 		{9059A42E-A4E1-4AFD-A2EF-5F0082D38154}.Release|x86.ActiveCfg = Release|Any CPU
 		{D8AA2967-1E7A-4FCB-A4BA-EFD0DAC32AB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D8AA2967-1E7A-4FCB-A4BA-EFD0DAC32AB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D8AA2967-1E7A-4FCB-A4BA-EFD0DAC32AB7}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{D8AA2967-1E7A-4FCB-A4BA-EFD0DAC32AB7}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{D8AA2967-1E7A-4FCB-A4BA-EFD0DAC32AB7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D8AA2967-1E7A-4FCB-A4BA-EFD0DAC32AB7}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{D8AA2967-1E7A-4FCB-A4BA-EFD0DAC32AB7}.Debug|x86.ActiveCfg = Debug|x86
 		{D8AA2967-1E7A-4FCB-A4BA-EFD0DAC32AB7}.Debug|x86.Build.0 = Debug|x86
 		{D8AA2967-1E7A-4FCB-A4BA-EFD0DAC32AB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
