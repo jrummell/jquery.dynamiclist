@@ -1,19 +1,26 @@
-﻿/// <reference path="jquery-1.7.1.js"/>
-/// <reference path="jquery.mobile-1.0.js"/>
-/// <reference path="jquery-ui-1.8.18.js" />
+﻿/// <reference path="jquery-1.9.1.js" />
+/// <reference path="jquery.mobile-1.3.1.js" />
+/// <reference path="jquery-ui-1.10.2.js" />
+/// <reference path="kendo/2013.1.319/kendo.web.min.js" />
 /// <reference path="jquery.validate.unobtrusive.dynamic.js" />
 
-(function (jQuery)
+(function(jQuery)
 {
+    var uiTypes = {
+        mobile: "mobile",
+        kendo: "kendo",
+        ui: "ui"
+    };
+
     //
     // plugin methods
     //
     var methods = {
-        init: function (options)
+        init: function(options)
         {
             options = jQuery.extend({}, jQuery.fn.dynamiclist.defaults, options);
 
-            return this.each(function ()
+            return this.each(function()
             {
                 var $list = jQuery(this);
                 var data = $list.data("dynamiclist");
@@ -35,10 +42,10 @@
                     }
 
                     // init existing items
-                    jQuery(options.itemSelector, $list).each(function (i)
+                    jQuery(options.itemSelector, $list).each(function(i)
                     {
                         var htmlFieldPrefix = methods._getIndexName(options.htmlFieldPrefix, options.property);
-                        methods._appendRemoveAndIndex(jQuery(this), i, htmlFieldPrefix, options.removeLabel, options._mobile, options.listType, options.itemRemoved);
+                        methods._appendRemoveAndIndex(jQuery(this), i, htmlFieldPrefix, options.removeLabel, options.uiType, options.listType, options.itemRemoved);
                     });
 
                     // add the add button
@@ -51,14 +58,14 @@
                             $list.append("<tfoot><\/tfoot>");
                             $tfoot = $list.find("tfoot");
                         }
-                        $tfoot.append('<tr><td colspan="' + colspan + '" class="add-item-container ui-widget-header ui-corner-bottom"><button class="add-item">' + (options.addLabel || "") + '<\/button><\/td><\/tr>');
+                        $tfoot.append('<tr><td colspan="' + colspan + '" class="add-item-container ui-widget-header k-header ui-corner-bottom"><button class="add-item">' + (options.addLabel || "") + '<\/button><\/td><\/tr>');
                     }
                     else
                     {
-                        $list.append('<li class="add-item-container ui-widget-header ui-corner-bottom" data-role="list-divider"><button class="add-item">' + (options.addLabel || "") + '<\/button><\/li>');
+                        $list.append('<li class="add-item-container ui-widget-header k-header ui-corner-bottom" data-role="list-divider"><button class="add-item">' + (options.addLabel || "") + '<\/button><\/li>');
                     }
 
-                    if (options._mobile)
+                    if (options.uiType == uiTypes.mobile)
                     {
                         $list.attr("data-inset", "true");
                         $list.listview();
@@ -66,13 +73,17 @@
 
                     var $button = $list.find(".add-item");
                     var hasLabel = options.addLabel != null && options.addLabel != "";
-                    if (options._mobile)
+                    if (options.uiType == uiTypes.mobile)
                     {
                         $button.buttonMarkup({ icon: "plus", iconpos: hasLabel ? "left" : "notext" });
                     }
+                    else if (options.uiType == uiTypes.kendo)
+                    {
+                        $button.prepend("<span class='k-icon k-i-plus'><\/span>");
+                    }
                     else
                     {
-                        var addButtonOptions = { icons: { primary: "ui-icon-new ui-icon-circle-plus"} };
+                        var addButtonOptions = { icons: { primary: "ui-icon-new ui-icon-circle-plus" } };
                         if (hasLabel)
                         {
                             addButtonOptions.label = options.addLabel;
@@ -84,9 +95,9 @@
                         $button.button(addButtonOptions);
                     }
 
-                    $button.click(function ()
+                    $button.click(function()
                     {
-                        jQuery(this).button("disable");
+                        jQuery(this).prop("disabled", true);
 
                         // build the html field prefix
                         var index = methods._getNewIndex($list, options.itemSelector);
@@ -97,7 +108,7 @@
                         {
                             getUrl += "?";
                         }
-                        jQuery.get(getUrl + '&htmlFieldPrefix=' + htmlFieldPrefix, function (html)
+                        jQuery.get(getUrl + '&htmlFieldPrefix=' + htmlFieldPrefix, function(html)
                         {
                             if (options.listType == "table")
                             {
@@ -119,14 +130,14 @@
 
                             var $item = jQuery(options.itemSelector + ":last", $list);
                             var indexName = methods._getIndexName(options.htmlFieldPrefix, options.property);
-                            methods._appendRemoveAndIndex($item, index, indexName, options.removeLabel, options._mobile, options.listType, options.itemRemoved);
+                            methods._appendRemoveAndIndex($item, index, indexName, options.removeLabel, options.uiType, options.listType, options.itemRemoved);
 
                             if (jQuery.validator && jQuery.validator.unobtrusive && jQuery.validator.unobtrusive.parseDynamicContent)
                             {
                                 jQuery.validator.unobtrusive.parseDynamicContent($item);
                             }
 
-                            if (options._mobile)
+                            if (options.uiType == uiTypes.mobile)
                             {
                                 jQuery(jQuery.mobile.textinput.prototype.options.initSelector, $item).textinput();
                                 $list.listview('refresh');
@@ -137,8 +148,8 @@
                                 options.itemAdded($item);
                             }
 
-                            $button.button("enable");
-                        }).error(function (xhr)
+                            $button.prop("disabled", false);
+                        }).error(function(xhr)
                         {
                             if (xhr.status == 401)
                             {
@@ -155,9 +166,9 @@
                 }
             });
         },
-        _appendRemoveAndIndex: function ($item, index, indexName, removeLabel, mobile, listType, itemRemoved)
+        _appendRemoveAndIndex: function($item, index, indexName, removeLabel, uiType, listType, itemRemoved)
         {
-            ///<summary>Appends the remove button and hidden field for the item index.</summary>
+            /// <summary>Appends the remove button and hidden field for the item index.</summary>
 
             var buttonHtml = '<button type="button" class="delete-item">' + (removeLabel || "") + '</button>';
 
@@ -179,7 +190,7 @@
 
             // delete button handler
             // IE7 has a problem with using this with live(), other wise I would use that instead
-            jQuery(".delete-item", $item).click(function ()
+            jQuery(".delete-item", $item).click(function()
             {
                 $item.remove();
 
@@ -190,17 +201,21 @@
             });
 
             var hasLabel = removeLabel != null && removeLabel != "";
-            if (mobile)
+            if (uiType == uiTypes.mobile)
             {
                 jQuery(".delete-item", $item).buttonMarkup({ icon: "delete", iconpos: "notext", inline: "true" });
             }
+            else if (uiType == uiTypes.kendo)
+            {
+                jQuery(".delete-item", $item).prepend("<span class='k-icon k-i-cancel'><\/span>");
+            }
             else
             {
-                var removeButtonOptions = { text: hasLabel, label: removeLabel, icons: { primary: "ui-icon-delete ui-icon-trash"} };
+                var removeButtonOptions = { text: hasLabel, label: removeLabel, icons: { primary: "ui-icon-delete ui-icon-trash" } };
                 jQuery(".delete-item", $item).button(removeButtonOptions);
             }
         },
-        _getBaseItemPrefix: function (baseHtmlFieldPrefix, property)
+        _getBaseItemPrefix: function(baseHtmlFieldPrefix, property)
         {
             // build the html field prefix
             var prefix = baseHtmlFieldPrefix;
@@ -212,17 +227,17 @@
 
             return prefix;
         },
-        _getNewItemPrefix: function (baseHtmlFieldPrefix, property, index)
+        _getNewItemPrefix: function(baseHtmlFieldPrefix, property, index)
         {
             return methods._getBaseItemPrefix(baseHtmlFieldPrefix, property) + "[" + index + "]";
         },
-        _getIndexName: function (baseHtmlFieldPrefix, property)
+        _getIndexName: function(baseHtmlFieldPrefix, property)
         {
             return methods._getBaseItemPrefix(baseHtmlFieldPrefix, property) + ".Index";
         },
-        _getNewIndex: function ($list, itemSelector)
+        _getNewIndex: function($list, itemSelector)
         {
-            ///<summary>Returns a unique index whose value is greater than any existing index.</summary>
+            /// <summary>Returns a unique index whose value is greater than any existing index.</summary>
 
             var $items = jQuery(itemSelector, $list);
             if ($items.length == 0)
@@ -231,7 +246,7 @@
             }
 
             var maxIndex = 0;
-            $items.each(function ()
+            $items.each(function()
             {
                 var index = parseInt(jQuery("input.index", jQuery(this)).val());
                 if (isNaN(index))
@@ -244,9 +259,9 @@
 
             return maxIndex + 1;
         },
-        options: function (options)
+        options: function(options)
         {
-            return this.each(function ()
+            return this.each(function()
             {
                 var $list = jQuery(this);
                 var currentOptions = $list.data("dynamiclist") || {};
@@ -254,17 +269,17 @@
                 $list.dynamiclist("destroy").dynamiclist("init", options);
             });
         },
-        add: function ()
+        add: function()
         {
-            return this.each(function ()
+            return this.each(function()
             {
                 var $list = jQuery(this);
                 $list.find(".add-item").click();
             });
         },
-        destroy: function ()
+        destroy: function()
         {
-            return this.each(function ()
+            return this.each(function()
             {
                 var $list = jQuery(this);
 
@@ -275,7 +290,7 @@
         }
     };
 
-    jQuery.fn.dynamiclist = function (method)
+    jQuery.fn.dynamiclist = function(method)
     {
         /// <summary>Creates the necessary elements for a list of items with support for adding and removing items.</summary>
 
@@ -283,7 +298,7 @@
         {
             return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
         }
-        else if (typeof (method) === 'object' || !method)
+        else if (typeof(method) === 'object' || !method)
         {
             return methods.init.apply(this, arguments);
         }
@@ -297,7 +312,7 @@
     // plugin defaults
     //
     jQuery.fn.dynamiclist.defaults = {
-        _mobile: (typeof (jQuery.mobile) != "undefined"), // True if using jquery mobile instead of jquery ui
+        uiType: (typeof(jQuery.mobile) != "undefined") ? "mobile" : (typeof(kendo) != "undefined") ? "kendo" : "ui", // The ui framework
         itemSelector: ".item", // Selector for each item in the list
         addLabel: "Additional", // Label for the add button
         removeLabel: "Remove", // Label for the remove button
@@ -305,7 +320,11 @@
         property: "Items", // Model property that contains this list. Each item input is assumed to have a name of HtmlFieldPrefix.Property[index].BindingProperty
         newItemUrl: "NewItem", // Action url for the new item partial view. It should accept a htmlFieldPrefix parameter. E.g. Controller/Action?htmlFieldPrefix=Model.Property
         listType: "list", // list or table
-        itemAdded: function (item) { }, // Occurs after an item is added to the list
-        itemRemoved: function (item) { } // Occurs after an item is removed from the list
+        itemAdded: function(item)
+        {
+        }, // Occurs after an item is added to the list
+        itemRemoved: function(item)
+        {
+        } // Occurs after an item is removed from the list
     };
 })(jQuery);
