@@ -20,6 +20,15 @@
         //and compare the two
         var unobtrusiveValidation = form.data('unobtrusiveValidation');
         var validator = form.validate();
+        
+        if (!unobtrusiveValidation || !validator)
+        {
+            if (console.log)
+            {
+                console.log("Could not find form/validator.");
+            }
+            return;
+        }
 
         jQuery.each(unobtrusiveValidation.options.rules, function (elname, elrules)
         {
@@ -59,4 +68,4 @@
             return escapedElname;
         }
     };
-})($);
+})(jQuery);
