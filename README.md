@@ -2,6 +2,7 @@
 
 A jQuery UI plugin for MVC that supports adding and removing items from a list.
 
+[![Build status](https://ci.appveyor.com/api/projects/status/l2gcqej17f39sb8u?svg=true)](https://ci.appveyor.com/project/jrummell/jquery-dynamiclist)
 
     <h2>
         List Example</h2>
@@ -42,12 +43,3 @@ A jQuery UI plugin for MVC that supports adding and removing items from a list.
                     }
                 });
     </script>
-
-
-
-[Continuous Integration](http://teamcity.codebetter.com/project.html?projectId=project346) provided by Codebetter:
-
-![TeamCity](http://www.jetbrains.com/img/banners/Codebetter.png)
-
-[keyboard-centric bug tracker](http://www.jetbrains.com/youtrack "YouTrack by JetBrains"),
-[continuous integration server](http://www.jetbrains.com/teamcity "TeamCity by JetBrains")
