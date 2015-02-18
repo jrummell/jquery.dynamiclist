@@ -17,7 +17,7 @@
         </dependencies>
     </metadata>
     <files>
-        <file src="Scripts\Packages\jquery.dynamiclist*.js" target="content\Scripts"/>
-        <file src="Scripts\Packages\jquery.validate.unobtrusive.dynamic*.js" target="content\Scripts"/>
+        <file src="Scripts\Package\jquery.dynamiclist*.js" target="content\Scripts"/>
+        <file src="Scripts\Package\jquery.validate.unobtrusive.dynamic*.js" target="content\Scripts"/>
     </files>
 </package>
