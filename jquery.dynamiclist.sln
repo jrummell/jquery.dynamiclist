@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jquery.dynamiclist", "jquery.dynamiclist\jquery.dynamiclist.csproj", "{9059A42E-A4E1-4AFD-A2EF-5F0082D38154}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6CDEE989-D454-45B1-ABBD-017B18D988C1}"
@@ -9,10 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6CDEE9
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minify", "Minify\Minify.csproj", "{D8AA2967-1E7A-4FCB-A4BA-EFD0DAC32AB7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minify.Tests", "Minify.Tests\Minify.Tests.csproj", "{548E8BBB-632E-4C69-B7E9-BB6B164B62CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,28 +32,6 @@ Global
 		{9059A42E-A4E1-4AFD-A2EF-5F0082D38154}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{9059A42E-A4E1-4AFD-A2EF-5F0082D38154}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{9059A42E-A4E1-4AFD-A2EF-5F0082D38154}.Release|x86.ActiveCfg = Release|Any CPU
-		{D8AA2967-1E7A-4FCB-A4BA-EFD0DAC32AB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D8AA2967-1E7A-4FCB-A4BA-EFD0DAC32AB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D8AA2967-1E7A-4FCB-A4BA-EFD0DAC32AB7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{D8AA2967-1E7A-4FCB-A4BA-EFD0DAC32AB7}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{D8AA2967-1E7A-4FCB-A4BA-EFD0DAC32AB7}.Debug|x86.ActiveCfg = Debug|x86
-		{D8AA2967-1E7A-4FCB-A4BA-EFD0DAC32AB7}.Debug|x86.Build.0 = Debug|x86
-		{D8AA2967-1E7A-4FCB-A4BA-EFD0DAC32AB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D8AA2967-1E7A-4FCB-A4BA-EFD0DAC32AB7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D8AA2967-1E7A-4FCB-A4BA-EFD0DAC32AB7}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{D8AA2967-1E7A-4FCB-A4BA-EFD0DAC32AB7}.Release|Mixed Platforms.Build.0 = Release|x86
-		{D8AA2967-1E7A-4FCB-A4BA-EFD0DAC32AB7}.Release|x86.ActiveCfg = Release|x86
-		{D8AA2967-1E7A-4FCB-A4BA-EFD0DAC32AB7}.Release|x86.Build.0 = Release|x86
-		{548E8BBB-632E-4C69-B7E9-BB6B164B62CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{548E8BBB-632E-4C69-B7E9-BB6B164B62CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{548E8BBB-632E-4C69-B7E9-BB6B164B62CA}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{548E8BBB-632E-4C69-B7E9-BB6B164B62CA}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{548E8BBB-632E-4C69-B7E9-BB6B164B62CA}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{548E8BBB-632E-4C69-B7E9-BB6B164B62CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{548E8BBB-632E-4C69-B7E9-BB6B164B62CA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{548E8BBB-632E-4C69-B7E9-BB6B164B62CA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{548E8BBB-632E-4C69-B7E9-BB6B164B62CA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{548E8BBB-632E-4C69-B7E9-BB6B164B62CA}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
