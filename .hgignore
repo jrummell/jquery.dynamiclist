@@ -1,7 +1,0 @@
-syntax: glob
-*.user
-*.suo
-packages
-bin
-obj
-*.nupkg
