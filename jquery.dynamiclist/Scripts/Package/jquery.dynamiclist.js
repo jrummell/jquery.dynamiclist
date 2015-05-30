@@ -9,7 +9,9 @@
     var uiTypes = {
         mobile: "mobile",
         kendo: "kendo",
-        ui: "ui"
+        ui: "ui",
+        bootstrap: "bootstrap",
+        none: "none"
     };
 
     //
@@ -28,7 +30,11 @@
                 // only initialize once
                 if (!data)
                 {
-                    $list.wrap("<div class='dynamic-list-container ui-widget ui-widget-content ui-corner-all'><\/div>");
+                    $list.wrap("<div class='dynamic-list-container'><\/div>");
+                    if (options.uiType == "ui")
+                    {
+                        $list.parent().addClass("ui-widget ui-widget-content ui-corner-all");
+                    }
                     $list.addClass("dynamic-list");
 
                     options.selector = $list.selector;
@@ -81,7 +87,7 @@
                     {
                         $button.prepend("<span class='k-icon k-i-plus'><\/span>");
                     }
-                    else
+                    else if (options.uiType == uiTypes.ui)
                     {
                         var addButtonOptions = { icons: { primary: "ui-icon-new ui-icon-circle-plus" } };
                         if (hasLabel)
@@ -93,6 +99,11 @@
                             addButtonOptions.text = false;
                         }
                         $button.button(addButtonOptions);
+                    }
+                    else if (options.uiType == uiTypes.bootstrap)
+                    {
+                        $button.addClass("btn btn-default");
+                        $button.prepend("<span class='glyphicon glyphicon-plus'><\/span>");
                     }
 
                     $button.click(function()
@@ -209,10 +220,14 @@
             {
                 jQuery(".delete-item", $item).prepend("<span class='k-icon k-i-cancel'><\/span>");
             }
-            else
+            else if (uiType == uiTypes.ui)
             {
                 var removeButtonOptions = { text: hasLabel, label: removeLabel, icons: { primary: "ui-icon-delete ui-icon-trash" } };
                 jQuery(".delete-item", $item).button(removeButtonOptions);
+            }
+            else if (uiType == uiTypes.bootstrap)
+            {
+                jQuery(".delete-item", $item).addClass("btn btn-danger").prepend("<span class='glyphicon glyphicon-remove'><\/span>");
             }
         },
         _getBaseItemPrefix: function(baseHtmlFieldPrefix, property)
@@ -312,7 +327,7 @@
     // plugin defaults
     //
     jQuery.fn.dynamiclist.defaults = {
-        uiType: (typeof(jQuery.mobile) != "undefined") ? "mobile" : (typeof(kendo) != "undefined") ? "kendo" : "ui", // The ui framework
+        uiType: (typeof(jQuery.mobile) != "undefined") ? "mobile" : (typeof(kendo) != "undefined") ? "kendo" : (typeof(jQuery.ui) != "undefined") ? "ui" : "bootstrap", // The ui framework
         itemSelector: ".item", // Selector for each item in the list
         addLabel: "Additional", // Label for the add button
         removeLabel: "Remove", // Label for the remove button

@@ -1,5 +1,5 @@
 ﻿@{
-    string ui = Request["ui"] ?? "ui";
+    string ui = Request["ui"] ?? "bootstrap";
 }
 <!DOCTYPE html>
 <html>
@@ -18,42 +18,55 @@
     {
         <link rel="stylesheet" type="text/css" href="~/Content/jquery.mobile-1.4.5.min.css" />
     }
-    else
+    else if (ui == "ui")
     {
         @Styles.Render("~/Content/themes/base/css")
+    }
+    else if (ui == "bootstrap")
+    {
+        <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="~/Content/bootstrap-theme.css" />
     }
 
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("styles", required: false)
 </head>
-    <body>
-        <div> Select a UI framework:
-            <select id="uiSelect">
-                <option value="ui">jQuery UI</option>
-                <option value="mobile">jQuery Mobile</option>
-                <option value="kendo">Kendo UI</option>
-            </select>
-        </div>
+<body>
+    <div>
+        Select a UI framework:
+        <select id="uiSelect">
+            <option value="bootstrap">bootstrap</option>
+            <option value="ui">jQuery UI</option>
+            <option value="mobile">jQuery Mobile</option>
+            <option value="kendo">Kendo UI</option>
+        </select>
+    </div>
 
+    <div class="container">
         @RenderBody()
+    </div>
 
-        @Scripts.Render("~/bundles/jquery", "~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquery", "~/bundles/jqueryval")
 
-        @if (Request["ui"] == "kendo")
-        {
-            <script src="~/Scripts/kendo/2014.1.318/kendo.web.min.js"></script>
-        }
-        else if (Request["ui"] == "mobile")
-        {
-            <script src="~/Scripts/jquery.mobile-1.4.5.js"></script>
-        }
-        else
-        {
-            @Scripts.Render("~/bundles/jqueryui")
-        }
+    @if (ui == "kendo")
+    {
+        <script src="~/Scripts/kendo/2014.1.318/kendo.web.min.js"></script>
+    }
+    else if (ui == "mobile")
+    {
+        <script src="~/Scripts/jquery.mobile-1.4.5.js"></script>
+    }
+    else if (ui == "ui")
+    {
+        @Scripts.Render("~/bundles/jqueryui")
+    }
+    else if (ui == "bootstrap")
+    {
+        <script src="~/Scripts/bootstrap.js"></script>
+    }
 
-        @RenderSection("scripts", required: false)
-        <script type="text/javascript">
+    @RenderSection("scripts", required: false)
+    <script type="text/javascript">
         <!--
             $(document).ready(function()
             {
@@ -66,5 +79,5 @@
             });
         // -->
     </script>
-    </body>
+</body>
 </html>

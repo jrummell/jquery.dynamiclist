@@ -18,6 +18,13 @@
 
         .list li { list-style: none; }
     </style>
+
+    @if (Request["ui"] == "bootstrap")
+    {
+        <style type="text/css">
+            input { border: none; }
+        </style>
+    }
 }
 @if (ViewBag.Success == true)
 {
@@ -29,7 +36,7 @@
     Table Example</h2>
 @using (Html.BeginForm())
 {
-    <table id="tableExample">
+    <table id="tableExample" class="table table-striped">
         <thead>
             <tr>
                 <th>
@@ -60,17 +67,14 @@
     <h2>
         List Example</h2>
     <ul id="listExample" class="list">
-        @for (int i = 0; i < Model.ListItems.Count; i++)
-        {
-            @Html.EditorFor(model => model.ListItems[i], "DynamicListItemModel")
-        }
+        @Html.EditorFor(model => model.ListItems)
     </ul>
     <h2>
         Empty List Example</h2>
     <ul id="emptyListExample" class="list">
     </ul>
     <p>
-        <input type="submit" value="Save" />
+        <input type="submit" value="Save" class="btn btn-primary" />
     </p>
 }
 @section scripts
