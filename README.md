@@ -1,13 +1,28 @@
 # jQuery Dynamiclist for MVC
 
-A jQuery plugin for MVC that supports adding and removing items from a list. It supports the following UI frameworks:
+A jQuery plugin for MVC that supports adding and removing items from a list.
 
-- Bootstrap
-- Kendo UI
-- jQuery UI
-- jQuery Mobile
- 
-Get it from [NuGet](https://www.nuget.org/packages?q=+jQuery.Dynamiclist)
+You can install with NuGet:
+
+## jQuery UI
+http://nuget.org/List/Packages/jQuery.Dynamiclist
+
+    PM> Install-Package jQuery.Dynamiclist
+
+## jQuery Mobile
+http://nuget.org/List/Packages/jQuery.Dynamiclist.Mobile
+
+    PM> Install-Package jQuery.Dynamiclist.Mobile
+
+## Kendo UI
+http://nuget.org/List/Packages/jQuery.Dynamiclist.Kendo
+
+    PM> Install-Package jQuery.Dynamiclist.Kendo
+
+## bootstrap
+http://nuget.org/List/Packages/jQuery.Dynamiclist.Bootstrap
+
+    PM> Install-Package jQuery.Dynamiclist.Bootstrap
 
 [![Build status](https://ci.appveyor.com/api/projects/status/l2gcqej17f39sb8u?svg=true)](https://ci.appveyor.com/project/jrummell/jquery-dynamiclist)
 
