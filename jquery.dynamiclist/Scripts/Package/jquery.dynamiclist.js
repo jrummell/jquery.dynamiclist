@@ -174,6 +174,14 @@
 
                     // save options
                     $list.data("dynamiclist", options);
+
+                    if (options.itemAdded)
+                    {
+                        $list.each(function (index, item)
+                        {
+                            options.itemAdded(item);
+                        });
+                    }
                 }
             });
         },
