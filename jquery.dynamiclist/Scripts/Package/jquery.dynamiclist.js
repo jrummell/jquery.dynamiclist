@@ -177,9 +177,12 @@
 
                     if (options.itemAdded)
                     {
-                        $list.each(function (index, item)
+                        $list.each(function (i, list)
                         {
-                            options.itemAdded(item);
+                            $(list).each(function(j, item)
+                            {
+                                options.itemAdded(item);
+                            });
                         });
                     }
                 }
