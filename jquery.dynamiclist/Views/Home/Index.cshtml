@@ -17,6 +17,8 @@
         }
 
         .list li { list-style: none; }
+
+        .list .item, .list .add-item-container { padding-bottom: 1em; }
     </style>
 
     @if (Request["ui"] == "bootstrap")
@@ -77,6 +79,7 @@
         <input type="submit" value="Save" class="btn btn-primary" />
     </p>
 }
+
 @section scripts
 {
     <script src="~/Scripts/Package/jquery.validate.unobtrusive.dynamic.js" type="text/javascript"> </script>

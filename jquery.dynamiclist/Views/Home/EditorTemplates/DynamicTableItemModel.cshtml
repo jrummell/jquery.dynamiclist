@@ -1,11 +1,11 @@
 ﻿@model DynamicListItemModel
 <tr class="item">
     <td>
-        @Html.EditorFor(model => model.Id)
+        @Html.TextBoxFor(model => model.Id, new { @class = "form-control" })
         @Html.ValidationMessageFor(model => model.Id)
     </td>
     <td>
-        @Html.EditorFor(model => model.Name)
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
         @Html.ValidationMessageFor(model => model.Name)
     </td>
 </tr>
