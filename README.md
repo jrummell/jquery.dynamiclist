@@ -34,13 +34,6 @@ http://nuget.org/List/Packages/jQuery.Dynamiclist.Bootstrap
             @Html.EditorFor(model => model.ListItems[i], "DynamicListItemModel")
         }
     </ul>
-    <h2>
-        Empty List Example</h2>
-    <ul id="emptyListExample" class="list">
-    </ul>
-    <p>
-        <input type="submit" value="Save" />
-    </p>
 
     <script src="~/Scripts/jquery.validate.unobtrusive.dynamic.js" type="text/javascript"> </script>
     <script src="~/Scripts/jquery.dynamiclist.js" type="text/javascript"> </script>
