@@ -31,7 +31,7 @@
                 if (!data)
                 {
                     $list.wrap("<div class='dynamic-list-container'><\/div>");
-                    if (options.uiType == "ui")
+                    if (options.uiType === "ui")
                     {
                         $list.parent().addClass("ui-widget ui-widget-content ui-corner-all");
                     }
@@ -40,7 +40,7 @@
                     options.selector = $list.selector;
 
                     // add the delete column
-                    if (options.listType == "table")
+                    if (options.listType === "table")
                     {
                         jQuery("thead tr", $list).append("<th><\/th>");
                         jQuery("tbody tr", $list).append("<td class='delete-cell'><\/td>");
@@ -55,39 +55,39 @@
                     });
 
                     // add the add button
-                    if (options.listType == "table")
+                    if (options.listType === "table")
                     {
                         var colspan = $list.find("thead td, thead th").length;
                         var $tfoot = $list.find("tfoot");
-                        if ($tfoot.length == 0)
+                        if ($tfoot.length === 0)
                         {
                             $list.append("<tfoot><\/tfoot>");
                             $tfoot = $list.find("tfoot");
                         }
-                        $tfoot.append('<tr><td colspan="' + colspan + '" class="add-item-container ui-widget-header k-header ui-corner-bottom"><button class="add-item">' + (options.addLabel || "") + '<\/button><\/td><\/tr>');
+                        $tfoot.append('<tr><td colspan="' + colspan + '" class="add-item-container ui-widget-header k-header ui-corner-bottom"><button class="add-item">' + (options.addLabel || "") + "<\/button><\/td><\/tr>");
                     }
                     else
                     {
-                        $list.append('<li class="add-item-container ui-widget-header k-header ui-corner-bottom" data-role="list-divider"><button class="add-item">' + (options.addLabel || "") + '<\/button><\/li>');
+                        $list.append('<li class="add-item-container ui-widget-header k-header ui-corner-bottom" data-role="list-divider"><button class="add-item">' + (options.addLabel || "") + "<\/button><\/li>");
                     }
 
-                    if (options.uiType == uiTypes.mobile)
+                    if (options.uiType === uiTypes.mobile)
                     {
                         $list.attr("data-inset", "true");
                         $list.listview();
                     }
 
                     var $button = $list.find(".add-item");
-                    var hasLabel = options.addLabel != null && options.addLabel != "";
-                    if (options.uiType == uiTypes.mobile)
+                    var hasLabel = options.addLabel != null && options.addLabel !== "";
+                    if (options.uiType === uiTypes.mobile)
                     {
                         $button.buttonMarkup({ icon: "plus", iconpos: hasLabel ? "left" : "notext" });
                     }
-                    else if (options.uiType == uiTypes.kendo)
+                    else if (options.uiType === uiTypes.kendo)
                     {
                         $button.prepend("<span class='k-icon k-i-plus'><\/span>");
                     }
-                    else if (options.uiType == uiTypes.ui)
+                    else if (options.uiType === uiTypes.ui)
                     {
                         var addButtonOptions = { icons: { primary: "ui-icon-new ui-icon-circle-plus" } };
                         if (hasLabel)
@@ -100,7 +100,7 @@
                         }
                         $button.button(addButtonOptions);
                     }
-                    else if (options.uiType == uiTypes.bootstrap)
+                    else if (options.uiType === uiTypes.bootstrap)
                     {
                         $button.addClass("btn btn-default");
                         $button.prepend("<span class='glyphicon glyphicon-plus'><\/span>");
@@ -114,14 +114,14 @@
                         var index = methods._getNewIndex($list, options.itemSelector);
                         var htmlFieldPrefix = methods._getNewItemPrefix(options.htmlFieldPrefix, options.property, index);
                         // append the new item via ajax
-                        var getUrl = options.newItemUrl;
+                        var getUrl = typeof (options.newItemUrl) === "function" ? options.newItemUrl() : options.newItemUrl;
                         if (getUrl.indexOf("?") < 0)
                         {
                             getUrl += "?";
                         }
-                        jQuery.get(getUrl + '&htmlFieldPrefix=' + htmlFieldPrefix, function(html)
+                        jQuery.get(getUrl + "&htmlFieldPrefix=" + htmlFieldPrefix, function(html)
                         {
-                            if (options.listType == "table")
+                            if (options.listType === "table")
                             {
                                 $list.find("tbody").append(html);
                                 $list.find(options.itemSelector + ":last").append("<td class='delete-cell'>");
@@ -148,10 +148,10 @@
                                 jQuery.validator.unobtrusive.parseDynamicContent($item);
                             }
 
-                            if (options.uiType == uiTypes.mobile)
+                            if (options.uiType === uiTypes.mobile)
                             {
                                 jQuery(jQuery.mobile.textinput.prototype.options.initSelector, $item).textinput();
-                                $list.listview('refresh');
+                                $list.listview("refresh");
                             }
 
                             if (options.itemAdded)
@@ -162,7 +162,7 @@
                             $button.prop("disabled", false);
                         }).error(function(xhr)
                         {
-                            if (xhr.status == 401)
+                            if (xhr.status === 401)
                             {
                                 // let the user know that their session timed out.
                                 alert("Your session has timed out. Please refresh the page and try again.");
@@ -192,7 +192,7 @@
         {
             /// <summary>Appends the remove button and hidden field for the item index.</summary>
 
-            var buttonHtml = '<button type="button" class="delete-item">' + (removeLabel || "") + '</button>';
+            var buttonHtml = '<button type="button" class="delete-item">' + (removeLabel || "") + "</button>";
 
             // This hidden index field is required so that we can dynamically remove items from the middle of the list.
             // If we didn't have this, we'd have to use sequential indexes and MVC would only bind some values.
@@ -200,7 +200,7 @@
             var hiddenHtml = '<input type="hidden" name="' + indexName + '" class="index" value="' + index + '" />';
             var buttonAndHiddenHtml = buttonHtml + hiddenHtml;
 
-            if (listType == "table")
+            if (listType === "table")
             {
                 $item.find("td.delete-cell").append(buttonAndHiddenHtml);
             }
@@ -223,20 +223,20 @@
             });
 
             var hasLabel = removeLabel != null && removeLabel != "";
-            if (uiType == uiTypes.mobile)
+            if (uiType === uiTypes.mobile)
             {
                 jQuery(".delete-item", $item).buttonMarkup({ icon: "delete", iconpos: "notext", inline: "true" });
             }
-            else if (uiType == uiTypes.kendo)
+            else if (uiType === uiTypes.kendo)
             {
                 jQuery(".delete-item", $item).prepend("<span class='k-icon k-i-cancel'><\/span>");
             }
-            else if (uiType == uiTypes.ui)
+            else if (uiType === uiTypes.ui)
             {
                 var removeButtonOptions = { text: hasLabel, label: removeLabel, icons: { primary: "ui-icon-delete ui-icon-trash" } };
                 jQuery(".delete-item", $item).button(removeButtonOptions);
             }
-            else if (uiType == uiTypes.bootstrap)
+            else if (uiType === uiTypes.bootstrap)
             {
                 jQuery(".delete-item", $item).addClass("btn btn-danger").prepend("<span class='glyphicon glyphicon-remove'><\/span>");
             }
@@ -245,7 +245,7 @@
         {
             // build the html field prefix
             var prefix = baseHtmlFieldPrefix;
-            if (prefix != "")
+            if (prefix !== "")
             {
                 prefix += ".";
             }
@@ -324,7 +324,7 @@
         {
             return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
         }
-        else if (typeof(method) === 'object' || !method)
+        else if (typeof(method) === "object" || !method)
         {
             return methods.init.apply(this, arguments);
         }
