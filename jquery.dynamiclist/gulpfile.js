@@ -1,0 +1,13 @@
+﻿var gulp = require('gulp');
+var uglify = require('gulp-uglifyjs');
+
+gulp.task('uglify', function ()
+{
+    gulp.src('scripts/package/jquery.dynamiclist.js')
+        .pipe(uglify('jquery.dynamiclist.min.js', { outSourceMap: true }))
+        .pipe(gulp.dest('scripts/package'));
+
+    gulp.src('scripts/package/jquery.validate.unobtrusive.dynamic.js')
+        .pipe(uglify('jquery.validate.unobtrusive.dynamic.min.js', {outSourceMap: true}))
+        .pipe(gulp.dest('scripts/package'));
+});
