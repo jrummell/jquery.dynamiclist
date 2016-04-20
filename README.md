@@ -45,7 +45,9 @@ http://nuget.org/List/Packages/jQuery.Dynamiclist.Bootstrap
                     removeLabel: "Remove", // Label for the remove button
                     htmlFieldPrefix: "@ViewData.TemplateInfo.HtmlFieldPrefix", // ASP.NET MVC html field prefix
                     property: "ListItems", // Model property that contains this list. Each item input is assumed to have a name of HtmlFieldPrefix.Property[index].BindingProperty
-                    newItemUrl: '@Url.Action("NewListItem")', // Action url for the new item partial view. It should accept a htmlFieldPrefix parameter. E.g. Controller/Action?htmlFieldPrefix=Model.Property
+                    // Action url for the new item partial view. It should accept a htmlFieldPrefix parameter. E.g. Controller/Action?htmlFieldPrefix=Model.Property
+                    // You can also specify a function that returns the action url
+                    newItemUrl: '@Url.Action("NewListItem")', 
                     listType: "list", // list or table
                     itemAdded: function(item)
                     {
