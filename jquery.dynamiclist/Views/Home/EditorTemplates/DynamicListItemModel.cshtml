@@ -1,11 +1,11 @@
 ﻿@model DynamicListItemModel
-<li class="item">
-    <div class="form-group">
-        @Html.TextBoxFor(model => model.Id, new {@class = "form-control"})
+<li class="item row">
+    <div class="form-group col-md-4">
+        @Html.TextBoxFor(model => model.Id, new {@class = "form-control k-input" })
         @Html.ValidationMessageFor(model => model.Id)
     </div>
-    <div class="form-group">
-        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+    <div class="form-group col-md-4">
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control k-input" })
         @Html.ValidationMessageFor(model => model.Name)
     </div>
 </li>

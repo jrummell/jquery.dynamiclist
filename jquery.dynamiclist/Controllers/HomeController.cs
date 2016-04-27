@@ -5,7 +5,7 @@ namespace jquery.dynamiclist.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(string ui)
         {
             var listItems = new[]
                             {
@@ -17,7 +17,13 @@ namespace jquery.dynamiclist.Controllers
                                  new DynamicListItemModel {Id = 3, Name = "Three"},
                                  new DynamicListItemModel {Id = 4, Name = "Four"}
                              };
-            DynamicListExampleModel model = new DynamicListExampleModel {ListItems = listItems, TableItems = tableItems};
+            DynamicListExampleModel model = new DynamicListExampleModel
+            {
+                Ui = ui ?? "bootstrap",
+                ListItems = listItems,
+                TableItems = tableItems,
+                DivItems = listItems
+            };
             return View(model);
         }
 
@@ -42,6 +48,13 @@ namespace jquery.dynamiclist.Controllers
         }
 
         public PartialViewResult NewTableItem(string htmlFieldPrefix)
+        {
+            ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
+
+            return PartialView(new DynamicListItemModel());
+        }
+
+        public PartialViewResult NewDivItem(string htmlFieldPrefix)
         {
             ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
 

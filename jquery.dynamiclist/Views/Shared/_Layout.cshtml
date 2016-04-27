@@ -1,5 +1,5 @@
 ﻿@{
-    string ui = Request["ui"] ?? "bootstrap";
+    string ui = ViewBag.Ui;
 }
 <!DOCTYPE html>
 <html>
@@ -11,16 +11,8 @@
 
     @if (ui == "kendo")
     {
-        <link rel="stylesheet" type="text/css" href="~/Content/kendo/2014.1.416/kendo.common.min.css" />
-        <link rel="stylesheet" type="text/css" href="~/Content/kendo/2014.1.416/kendo.default.min.css" />
-    }
-    else if (ui == "mobile")
-    {
-        <link rel="stylesheet" type="text/css" href="~/Content/jquery.mobile-1.4.5.min.css" />
-    }
-    else if (ui == "ui")
-    {
-        @Styles.Render("~/Content/themes/base/css")
+        <link rel="stylesheet" type="text/css" href="//kendo.cdn.telerik.com/2016.1.412/styles/kendo.common.min.css" />
+        <link rel="stylesheet" type="text/css" href="//kendo.cdn.telerik.com/2016.1.412/styles/kendo.default.min.css" />
     }
     else if (ui == "bootstrap")
     {
@@ -36,13 +28,11 @@
         Select a UI framework:
         <select id="uiSelect">
             <option value="bootstrap">bootstrap</option>
-            <option value="ui">jQuery UI</option>
-            <option value="mobile">jQuery Mobile</option>
             <option value="kendo">Kendo UI</option>
         </select>
     </div>
 
-    <div class="container">
+    <div class="container k-content">
         @RenderBody()
     </div>
 
@@ -50,15 +40,7 @@
 
     @if (ui == "kendo")
     {
-        <script src="~/Scripts/kendo/2014.1.416/kendo.ui.core.min.js"></script>
-    }
-    else if (ui == "mobile")
-    {
-        <script src="~/Scripts/jquery.mobile-1.4.5.js"></script>
-    }
-    else if (ui == "ui")
-    {
-        @Scripts.Render("~/bundles/jqueryui")
+        <script src="//kendo.cdn.telerik.com/2016.1.412/js/kendo.ui.core.min.js"></script>
     }
     else if (ui == "bootstrap")
     {
