@@ -1,96 +1,163 @@
 ﻿@model DynamicListExampleModel
 @{
     ViewBag.Title = "DynamicList Example";
+    ViewBag.Ui = Model.Ui;
 }
 @section styles
 {
     <style type="text/css">
-        table { border-collapse: collapse; }
+        table {
+            border-collapse: collapse;
+        }
 
-        table td, table th { border: 1px solid #ccc; }
+            table td, table th {
+                border: 1px solid #ccc;
+            }
 
-        .dynamic-list-container { display: inline-block; }
+            table td {
+                padding: .5em;
+            }
+
+        .dynamic-list-container {
+            display: inline-block;
+        }
 
         .list {
             margin: 0;
             padding: 0;
         }
 
-        .list li { list-style: none; }
+        ul.list, .k-widget {
+            width: 430px;
+        }
 
-        .list .item, .list .add-item-container { padding-bottom: 1em; }
+            .k-widget li {
+                padding: .5em;
+            }
+
+            .list li {
+                list-style: none;
+            }
+
+            .list .item, .list .add-item-container {
+                padding-bottom: .5em;
+            }
+
+            .list .add-item-container, table .add-item-container {
+                text-align: right;
+            }
+
+        .ui-kendo .k-input {
+            padding: .2em;
+        }
+
+        .ui-kendo ul .form-group {
+            float: left;
+            padding-right: 1em;
+        }
+
+        .ui-kendo ul .delete-item {
+            float: left;
+        }
+
+        .ui-kendo ul .item .form-group {
+            padding-bottom: .5em;
+        }
+
+        .ui-kendo ul .item, .ui-kendo .add-item-container {
+            clear: both;
+        }
     </style>
 
-    @if (Request["ui"] == "bootstrap")
+    @if (Model.Ui == "bootstrap")
     {
         <style type="text/css">
-            input { border: none; }
+            input {
+                border: none;
+            }
         </style>
     }
 }
-@if (ViewBag.Success == true)
-{
-    <div class="ui-state-highlight">
-        Save successful</div>
-}
-@Html.ValidationSummary(true)
-<h2>
-    Table Example</h2>
-@using (Html.BeginForm())
-{
-    <table id="tableExample" class="table table-striped">
-        <thead>
-            <tr>
-                <th>
-                    ID
-                </th>
-                <th>
-                    Name
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @for (int i = 0; i < Model.TableItems.Count; i++)
-            {
-                @Html.EditorFor(model => model.TableItems[i], "DynamicTableItemModel")
-            }
-        </tbody>
-        <tfoot>
-            <tr>
-                <th>
-                    ID
-                </th>
-                <th>
-                    Name
-                </th>
-            </tr>
-        </tfoot>
-    </table>
-    <h2>
-        List Example</h2>
-    <ul id="listExample" class="list">
-        @Html.EditorFor(model => model.ListItems)
-    </ul>
-    <h2>
-        Empty List Example</h2>
-    <ul id="emptyListExample" class="list">
-    </ul>
-    <p>
-        <input type="submit" value="Save" class="btn btn-primary" />
-    </p>
-}
+
+<div class="ui-@(Model.Ui)">
+    @if (ViewBag.Success == true)
+    {
+        <div class="alert alert-success k-state-highlight">
+            Save successful
+        </div>
+    }
+    @Html.ValidationSummary(true)
+    @using (Html.BeginForm())
+    {
+        <h2>Table Example</h2>
+        <table id="tableExample" class="table table-striped">
+            <thead>
+                <tr class="k-header">
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.TableItems.Count; i++)
+                {
+                    @Html.EditorFor(model => model.TableItems[i], "DynamicTableItemModel")
+                }
+            </tbody>
+            <tfoot></tfoot>
+        </table>
+
+        <h2>List Example</h2>
+        <div class="k-widget">
+            <ul id="listExample" class="list k-content">
+                @Html.EditorFor(model => model.ListItems)
+            </ul>
+        </div>
+
+        <h2>Empty List Example</h2>
+        <div class="k-widget">
+            <ul id="emptyListExample" class="list k-content"></ul>
+        </div>
+
+        <p>
+            <button type="submit" class="btn btn-primary k-button">Save</button>
+        </p>
+    }
+</div>
 
 @section scripts
 {
     <script src="~/Scripts/Package/jquery.validate.unobtrusive.dynamic.js" type="text/javascript"> </script>
     <script src="~/Scripts/Package/jquery.dynamiclist.js" type="text/javascript"> </script>
+    <script src="~/Scripts/Package/jquery.dynamiclist.templates.@(Model.Ui).js" type="text/javascript"> </script>
     <script type="text/javascript">
-    <!--
-        $(document).ready(function() {
+        <!--
+        $(document).ready(function()
+        {
+            if ($.fn.dynamiclist.defaults.uiType === "bootstrap")
+            {
+                // custom templates for bootstrap
+                $.fn.dynamiclist.defaults.templates = {
+                    table: {
+                        container: "<div class='dynamic-list-container'><\/div>",
+                        addItem: "<div class=\"add-item-container\"><button class=\"add-item btn btn-default\"><span class='glyphicon glyphicon-plus'><\/span>{addLabel}<\/button><\/div>",
+                        removeItem: "<button type=\"button\" class=\"delete-item btn btn-danger\"><span class=\"glyphicon glyphicon-remove\"><\/span>{removeLabel}</button>"
+                    },
+                    list: {
+                        container: "<div class='dynamic-list-container'><\/div>",
+                        addItem: "<li class=\"add-item-container row\"><div class='col-md-12'><button class=\"add-item btn btn-default\"><span class='glyphicon glyphicon-plus'><\/span>{addLabel}<\/button><\/div><\/li>",
+                        removeItem: "<div class='col-md-4 text-right'><button type=\"button\" class=\"delete-item btn btn-danger\"><span class=\"glyphicon glyphicon-remove\"><\/span>{removeLabel}</button><\/div>"
+                    }
+                };
+            }
+
             $("#tableExample").dynamiclist(
                 {
                     itemSelector: "tbody tr.item", // Selector for each item in the list
-                    addLabel: "Additional", // Label for the add button
+                    addLabel: "Add", // Label for the add button
                     removeLabel: "Remove", // Label for the remove button
                     htmlFieldPrefix: "@ViewData.TemplateInfo.HtmlFieldPrefix", // ASP.NET MVC html field prefix
                     property: "TableItems", // Model property that contains this list. Each item input is assumed to have a name of HtmlFieldPrefix.Property[index].BindingProperty
@@ -99,6 +166,8 @@
                     itemAdded: function(item)
                     {
                         // Occurs after an item is added to the list
+                        // add the alt row class
+                        $("#tableExample tbody tr:odd").addClass("k-alt");
                     },
                     itemRemoved: function(item)
                     {
@@ -109,7 +178,7 @@
             $("#listExample").dynamiclist(
                 {
                     itemSelector: "li.item", // Selector for each item in the list
-                    addLabel: "Additional", // Label for the add button
+                    addLabel: "Add", // Label for the add button
                     removeLabel: "Remove", // Label for the remove button
                     htmlFieldPrefix: "@ViewData.TemplateInfo.HtmlFieldPrefix", // ASP.NET MVC html field prefix
                     property: "ListItems", // Model property that contains this list. Each item input is assumed to have a name of HtmlFieldPrefix.Property[index].BindingProperty
@@ -129,10 +198,10 @@
             $("#emptyListExample").dynamiclist(
                 {
                     itemSelector: "li.item", // Selector for each item in the list
-                    addLabel: "Additional", // Label for the add button
+                    addLabel: "Add", // Label for the add button
                     removeLabel: "Remove", // Label for the remove button
                     htmlFieldPrefix: "@ViewData.TemplateInfo.HtmlFieldPrefix", // ASP.NET MVC html field prefix
-                    property: "ListItems", // Model property that contains this list. Each item input is assumed to have a name of HtmlFieldPrefix.Property[index].BindingProperty
+                    property: "EmptyListItems", // Model property that contains this list. Each item input is assumed to have a name of HtmlFieldPrefix.Property[index].BindingProperty
                     newItemUrl: '@Url.Action("NewListItem")', // Action url for the new item partial view. It should accept a htmlFieldPrefix parameter. E.g. Controller/Action?htmlFieldPrefix=Model.Property
                     listType: "list", // list or table
                     itemAdded: function(item)
@@ -146,6 +215,6 @@
                     }
                 });
         });
-    // -->
-</script>
+        // -->
+    </script>
 }

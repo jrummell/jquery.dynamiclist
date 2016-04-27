@@ -1,15 +1,11 @@
 ﻿/// <reference path="../jquery-2.1.4.js" />
-/// <reference path="../jquery.mobile-1.4.5.js" />
-/// <reference path="../jquery-ui-1.11.4.js" />
 /// <reference path="../kendo/2014.1.416/kendo.web.min.js" />
 /// <reference path="jquery.validate.unobtrusive.dynamic.js" />
 
 (function(jQuery)
 {
     var uiTypes = {
-        mobile: "mobile",
         kendo: "kendo",
-        ui: "ui",
         bootstrap: "bootstrap",
         none: "none"
     };
@@ -59,12 +55,6 @@
                     jQuery.validator.unobtrusive.parseDynamicContent($item);
                 }
 
-                if (options.uiType === uiTypes.mobile)
-                {
-                    jQuery(jQuery.mobile.textinput.prototype.options.initSelector, $item).textinput();
-                    options.list.listview("refresh");
-                }
-
                 if (options.itemAdded)
                 {
                     options.itemAdded($item);
@@ -112,17 +102,6 @@
                     options.itemRemoved($item);
                 }
             });
-
-            var hasLabel = options.removeLabel != null && options.removeLabel !== "";
-            if (options.uiType === uiTypes.mobile)
-            {
-                jQuery(".delete-item", $item).buttonMarkup({ icon: "delete", iconpos: "notext", inline: "true" });
-            }
-            else if (options.uiType === uiTypes.ui)
-            {
-                var removeButtonOptions = { text: hasLabel, label: options.removeLabel, icons: { primary: "ui-icon-delete ui-icon-trash" } };
-                jQuery(".delete-item", $item).button(removeButtonOptions);
-            }
         },
         getBaseItemPrefix: function(baseHtmlFieldPrefix, property)
         {
@@ -170,7 +149,7 @@
         },
         getTemplate: function(template, options)
         {
-            return options.templates[options.listType][options.uiType][template];
+            return options.templates[options.listType][template];
         },
         parseTemplate: function(template, options)
         {
@@ -232,39 +211,14 @@
                             $list.append("<tfoot><\/tfoot>");
                             $tfoot = $list.find("tfoot");
                         }
-                        $tfoot.append('<tr><td colspan="' + colspan + '"">' + addItemHtml + "<\/td><\/tr>");
+                        $tfoot.append('<tr><td colspan="' + colspan + '">' + addItemHtml + "<\/td><\/tr>");
                     }
                     else
                     {
                         $list.append(addItemHtml);
                     }
 
-                    if (options.uiType === uiTypes.mobile)
-                    {
-                        $list.attr("data-inset", "true");
-                        $list.listview();
-                    }
-
                     var $button = options.addButton = $list.find(".add-item");
-                    var hasLabel = options.addLabel != null && options.addLabel !== "";
-                    if (options.uiType === uiTypes.mobile)
-                    {
-                        $button.buttonMarkup({ icon: "plus", iconpos: hasLabel ? "left" : "notext" });
-                    }
-                    else if (options.uiType === uiTypes.ui)
-                    {
-                        var addButtonOptions = { icons: { primary: "ui-icon-new ui-icon-circle-plus" } };
-                        if (hasLabel)
-                        {
-                            addButtonOptions.label = options.addLabel;
-                        }
-                        else
-                        {
-                            addButtonOptions.text = false;
-                        }
-                        $button.button(addButtonOptions);
-                    }
-
                     $button.click(function(e)
                     {
                         privateMethods.addItem(e, options);
@@ -340,7 +294,7 @@
     //
     jQuery.fn.dynamiclist.defaults = {
         // The ui framework
-        uiType: (typeof (jQuery.mobile) != "undefined") ? "mobile" : (typeof (kendo) != "undefined") ? "kendo" : (typeof (jQuery.ui) != "undefined") ? "ui" : "bootstrap",
+        uiType: (typeof (jQuery.fn.button) != "undefined" && jQuery.fn.button.Constructor && jQuery.fn.button.Constructor.VERSION) ? uiTypes.bootstrap : uiTypes.kendo,
         // Selector for each item in the list
         itemSelector: ".item",
         // Label for the add button
@@ -351,85 +305,30 @@
         htmlFieldPrefix: "",
         // Model property that contains this list. Each item input is assumed to have a name of HtmlFieldPrefix.Property[index].BindingProperty
         property: "Items",
-        // Action url for the new item partial view. This can be a string or function. It should accept a htmlFieldPrefix parameter. E.g. Controller/Action?htmlFieldPrefix=Model.Property
+        // Action url for the new item partial view. This can be a string or function. The url should accept a htmlFieldPrefix parameter. E.g. Controller/Action?htmlFieldPrefix=Model.Property
         newItemUrl: "NewItem",
         // list, table, or div
         listType: "list",
-        // Optional. "<div class='row'></div>"
-        addItemContainer: null,
-        // Optional. "<div class='col-md-2'></div>"
-        removeItemContainer: null,
         // Occurs after an item is added to the list
         itemAdded: function(item) { },
         // Occurs after an item is removed from the list
-        itemRemoved: function(item) { },
-        // markup templates
-        templates: {
+        itemRemoved: function (item) { },
+        // define custom templates if you need more control over the styling
+        templates : {
             table: {
-                bootstrap: {
-                    container: "<div class='dynamic-list-container'><\/div>",
-                    addItem: "<div class=\"add-item-container\"><button class=\"add-item btn btn-default\"><span class='glyphicon glyphicon-plus'><\/span>{addLabel}<\/button><\/div>",
-                    removeItem: '<button type="button" class="delete-item btn btn-danger"><span class="glyphicon glyphicon-remove"><\/span>{removeLabel}</button>'
-                },
-                kendo: {
-                    container: "<div class='dynamic-list-container'><\/div>",
-                    addItem: "<div class=\"add-item-container k-header\"><button class=\"add-item k-button k-button-icontext\"><span class='k-icon k-i-plus'><\/span>{addLabel}<\/button><\/div>",
-                    removeItem: "<button type=\"button\" class=\"delete-item k-button k-button-icontext\"><span class='k-icon k-i-cancel'><\/span>{removeLabel}</button>"
-                        },
-                mobile: {
-                    container: "<div class='dynamic-list-container'><\/div>",
-                    addItem: "<div class=\"add-item-container\" data-role=\"list-divider\"><button class=\"add-item\">{addLabel}<\/button><\/div>",
-                    removeItem: "<button type=\"button\" class=\"delete-item\">{removeLabel}</button>"
-                },
-                ui: {
-                    container: "<div class='dynamic-list-container ui-widget ui-widget-content ui-corner-all'><\/div>",
-                    addItem: "<div class=\"add-item-container ui-widget-header ui-corner-bottom\"><button class=\"add-item\">{addLabel}<\/button><\/div>",
-                    removeItem: "<button type=\"button\" class=\"delete-item\">{removeLabel}</button>"
-                }
+                container: "<div class='dynamic-list-container'><\/div>",
+                addItem: "<div class=\"add-item-container\"><button class=\"add-item\">{addLabel}<\/button><\/div>",
+                removeItem: "<button type=\"button\" class=\"delete-item\">{removeLabel}</button>"
             },
             list: {
-                bootstrap: {
-                    container: "<div class='dynamic-list-container'><\/div>",
-                    addItem: "<li class=\"add-item-container\"><button class=\"add-item btn btn-default\"><span class='glyphicon glyphicon-plus'><\/span>{addLabel}<\/button><\/li>",
-                    removeItem: '<button type="button" class="delete-item btn btn-danger"><span class="glyphicon glyphicon-remove"><\/span>{removeLabel}</button>'
-                },
-                kendo: {
-                    container: "<div class='dynamic-list-container'><\/div>",
-                    addItem: "<li class=\"add-item-container k-header\"><button class=\"add-item k-button k-button-icontext\"><span class='k-icon k-i-plus'><\/span>{addLabel}<\/button><\/li>",
-                    removeItem: "<button type=\"button\" class=\"delete-item k-button k-button-icontext\"><span class='k-icon k-i-cancel'><\/span>{removeLabel}</button>"
-                },
-                mobile: {
-                    container: "<div class='dynamic-list-container'><\/div>",
-                    addItem: "<li class=\"add-item-container\" data-role=\"list-divider\"><button class=\"add-item\">{addLabel}<\/button><\/li>",
-                    removeItem: "<button type=\"button\" class=\"delete-item\">{removeLabel}</button>"
-                },
-                ui: {
-                    container: "<div class='dynamic-list-container ui-widget ui-widget-content ui-corner-all'><\/div>",
-                    addItem: "<li class=\"add-item-container ui-widget-header ui-corner-bottom\"><button class=\"add-item\">{addLabel}<\/button><\/li>",
-                    removeItem: "<button type=\"button\" class=\"delete-item\">{removeLabel}</button>"
-                }
+                container: "<div class='dynamic-list-container'><\/div>",
+                addItem: "<li class=\"add-item-container\"><button class=\"add-item\">{addLabel}<\/button><\/li>",
+                removeItem: "<button type=\"button\" class=\"delete-item\">{removeLabel}</button>"
             },
             div: {
-                bootstrap: {
-                    container: "<div class='dynamic-list-container'><\/div>",
-                    addItem: "<div class=\"add-item-container row\"><button class=\"add-item btn btn-default\"><span class='glyphicon glyphicon-plus'><\/span>{addLabel}<\/button><\/div>",
-                    removeItem: '<div class="row"><button type="button" class="delete-item btn btn-danger pull-right"><span class="glyphicon glyphicon-remove"><\/span>{removeLabel}</button><\/div>'
-                },
-                kendo: {
-                    container: "<div class='dynamic-list-container'><\/div>",
-                    addItem: "<li class=\"add-item-container k-header\"><button class=\"add-item k-button\">{addLabel}<\/button><\/li>",
-                    removeItem: "<button type=\"button\" class=\"delete-item\"><span class='k-icon k-i-cancel'><\/span>{removeLabel}</button>"
-                },
-                mobile: {
-                    container: "<div class='dynamic-list-container'><\/div>",
-                    addItem: "<li class=\"add-item-container\" data-role=\"list-divider\"><button class=\"add-item\">{addLabel}<\/button><\/li>",
-                    removeItem: "<button type=\"button\" class=\"delete-item\">{removeLabel}</button>"
-                },
-                ui: {
-                    container: "<div class='dynamic-list-container ui-widget ui-widget-content ui-corner-all'><\/div>",
-                    addItem: "<li class=\"add-item-container ui-widget-header ui-corner-bottom\"><button class=\"add-item\">{addLabel}<\/button><\/li>",
-                    removeItem: "<button type=\"button\" class=\"delete-item\">{removeLabel}</button>"
-                }
+                container: "<div class='dynamic-list-container'><\/div>",
+                addItem: "<div class=\"add-item-container\"><button class=\"add-item\">{addLabel}<\/button><\/div>",
+                removeItem: "<button type=\"button\" class=\"delete-item\">{removeLabel}</button>"
             }
         }
     };
