@@ -3,89 +3,6 @@
     ViewBag.Title = "DynamicList Example";
     ViewBag.Ui = Model.Ui;
 }
-@section styles
-{
-    <style type="text/css">
-        table {
-            border-collapse: collapse;
-        }
-
-            table td, table th {
-                border: 1px solid #ccc;
-            }
-
-            table td {
-                padding: .5em;
-            }
-
-        .dynamic-list-container {
-            display: inline-block;
-        }
-
-        .list {
-            margin: 0;
-            padding: 0;
-        }
-
-        ul.list, div.list, .k-widget {
-            width: 430px;
-        }
-
-            .k-widget li, .k-widget div.item {
-                padding: .5em;
-            }
-
-        .list li {
-            list-style: none;
-        }
-
-        .list .item, .list .add-item-container {
-            padding-bottom: .5em;
-        }
-
-        .list .add-item-container, table .add-item-container {
-            text-align: right;
-        }
-
-        .ui-kendo .k-input {
-            padding: .2em;
-        }
-
-        .ui-kendo ul .form-group, .ui-kendo div.item .form-group {
-            float: left;
-            padding-right: 1em;
-        }
-
-        .ui-kendo ul .delete-item, .ui-kendo div.item .delete-item {
-            float: left;
-        }
-
-        .ui-kendo ul .item .form-group, .ui-kendo div.item .form-group {
-            padding-bottom: .5em;
-        }
-
-        .ui-kendo ul .item, .ui-kendo .add-item-container {
-            clear: both;
-        }
-
-        .ui-kendo div.list .add-item-container {
-            padding: .5em;
-        }
-
-        span.glyphicon {
-            padding-right: .3em;
-        }
-    </style>
-
-    @if (Model.Ui == "bootstrap")
-    {
-        <style type="text/css">
-            input {
-                border: none;
-            }
-        </style>
-    }
-}
 
 <div class="ui-@(Model.Ui)">
     @if (ViewBag.Success == true)
@@ -144,7 +61,10 @@
         </div>
 
         <p>
-            <button type="submit" class="btn btn-primary k-button">Save</button>
+            <button type="submit" class="btn btn-primary k-button k-button-icontext">
+                <span class="glyphicon glyphicon-check k-icon k-i-tick"></span>
+                Save
+            </button>
         </p>
     }
 </div>
@@ -158,7 +78,7 @@
         <!--
         $(document).ready(function()
         {
-            if ($.fn.dynamiclist.defaults.uiType === "bootstrap")
+            if ("@Model.Ui" === "bootstrap")
             {
                 // custom templates for bootstrap
                 $.fn.dynamiclist.defaults.templates = {
@@ -188,7 +108,7 @@
                     htmlFieldPrefix: "@ViewData.TemplateInfo.HtmlFieldPrefix", // ASP.NET MVC html field prefix
                     property: "@Html.NameFor(m => m.TableItems)", // Model property that contains this list. Each item input is assumed to have a name of HtmlFieldPrefix.Property[index].BindingProperty
                     newItemUrl: '@Url.Action("NewTableItem")', // Action url for the new item partial view. It should accept a htmlFieldPrefix parameter. E.g. Controller/Action?htmlFieldPrefix=Model.Property
-                    listType: "table", // list or table
+                    listType: "table", // list, div or table
                     itemAdded: function(item)
                     {
                         // Occurs after an item is added to the list
@@ -201,6 +121,7 @@
                         $("#tableExample").after(" Item " + $("td input:first", item).val() + " removed.");
                     }
                 });
+
             $("#listExample").dynamiclist(
                 {
                     itemSelector: "li.item", // Selector for each item in the list
@@ -209,7 +130,7 @@
                     htmlFieldPrefix: "@ViewData.TemplateInfo.HtmlFieldPrefix", // ASP.NET MVC html field prefix
                     property: "@Html.NameFor(m => m.ListItems)", // Model property that contains this list. Each item input is assumed to have a name of HtmlFieldPrefix.Property[index].BindingProperty
                     newItemUrl: '@Url.Action("NewListItem")', // Action url for the new item partial view. It should accept a htmlFieldPrefix parameter. E.g. Controller/Action?htmlFieldPrefix=Model.Property
-                    listType: "list", // list or table
+                    listType: "list", // list, div or table
                     itemAdded: function(item)
                     {
                         // Occurs after an item is added to the list
@@ -229,7 +150,7 @@
                     htmlFieldPrefix: "@ViewData.TemplateInfo.HtmlFieldPrefix", // ASP.NET MVC html field prefix
                     property: "@Html.NameFor(m => m.EmptyListItems)", // Model property that contains this list. Each item input is assumed to have a name of HtmlFieldPrefix.Property[index].BindingProperty
                     newItemUrl: '@Url.Action("NewListItem")', // Action url for the new item partial view. It should accept a htmlFieldPrefix parameter. E.g. Controller/Action?htmlFieldPrefix=Model.Property
-                    listType: "list", // list or table
+                    listType: "list", // list, div or table
                     itemAdded: function(item)
                     {
                         // Occurs after an item is added to the list
@@ -249,7 +170,7 @@
                     htmlFieldPrefix: "@ViewData.TemplateInfo.HtmlFieldPrefix", // ASP.NET MVC html field prefix
                     property: "@Html.NameFor(m => m.DivItems)", // Model property that contains this list. Each item input is assumed to have a name of HtmlFieldPrefix.Property[index].BindingProperty
                     newItemUrl: '@Url.Action("NewDivItem")', // Action url for the new item partial view. It should accept a htmlFieldPrefix parameter. E.g. Controller/Action?htmlFieldPrefix=Model.Property
-                    listType: "div", // list or table
+                    listType: "div", // list, div or table
                     itemAdded: function (item)
                     {
                         // Occurs after an item is added to the list

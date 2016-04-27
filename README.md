@@ -35,8 +35,6 @@ http://nuget.org/List/Packages/jQuery.Dynamiclist.Bootstrap
     <script type="text/javascript">
         $("#listExample").dynamiclist(
             {
-                // The ui framework. bootstrap, kendo, or none
-                uiType: "bootstrap",
                 // Selector for each item in the list
                 itemSelector: ".item",
                 // Label for the add button

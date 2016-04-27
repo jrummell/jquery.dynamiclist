@@ -4,12 +4,6 @@
 
 (function(jQuery)
 {
-    var uiTypes = {
-        kendo: "kendo",
-        bootstrap: "bootstrap",
-        none: "none"
-    };
-
     var privateMethods = {
         addItem: function(e, options)
         {
@@ -293,8 +287,6 @@
     // plugin defaults
     //
     jQuery.fn.dynamiclist.defaults = {
-        // The ui framework
-        uiType: (typeof (jQuery.fn.button) != "undefined" && jQuery.fn.button.Constructor && jQuery.fn.button.Constructor.VERSION) ? uiTypes.bootstrap : uiTypes.kendo,
         // Selector for each item in the list
         itemSelector: ".item",
         // Label for the add button

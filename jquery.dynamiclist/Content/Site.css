@@ -59,3 +59,75 @@ textarea {
 .validation-summary-valid {
     display: none;
 }
+
+/* Styles for examples
+-----------------------------------------------------------*/
+table {
+    border-collapse: collapse;
+}
+
+    table td, table th {
+        border: 1px solid #ccc;
+    }
+
+    table td {
+        padding: .5em;
+    }
+
+.dynamic-list-container {
+    display: inline-block;
+}
+
+.list {
+    margin: 0;
+    padding: 0;
+}
+
+ul.list, div.list, .k-widget {
+    width: 430px;
+}
+
+    .k-widget li, .k-widget div.item {
+        padding: .5em;
+    }
+
+.list li {
+    list-style: none;
+}
+
+.list .item, .list .add-item-container {
+    padding-bottom: .5em;
+}
+
+.list .add-item-container, table .add-item-container {
+    text-align: right;
+}
+
+.ui-kendo .k-input {
+    padding: .2em;
+}
+
+.ui-kendo ul .form-group, .ui-kendo div.item .form-group {
+    float: left;
+    padding-right: 1em;
+}
+
+.ui-kendo ul .delete-item, .ui-kendo div.item .delete-item {
+    float: left;
+}
+
+.ui-kendo ul .item .form-group, .ui-kendo div.item .form-group {
+    padding-bottom: .5em;
+}
+
+.ui-kendo ul .item, .ui-kendo .add-item-container {
+    clear: both;
+}
+
+.ui-kendo div.list .add-item-container {
+    padding: .5em;
+}
+
+span.glyphicon {
+    padding-right: .3em;
+}
