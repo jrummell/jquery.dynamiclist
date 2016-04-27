@@ -27,45 +27,53 @@
             padding: 0;
         }
 
-        ul.list, .k-widget {
+        ul.list, div.list, .k-widget {
             width: 430px;
         }
 
-            .k-widget li {
+            .k-widget li, .k-widget div.item {
                 padding: .5em;
             }
 
-            .list li {
-                list-style: none;
-            }
+        .list li {
+            list-style: none;
+        }
 
-            .list .item, .list .add-item-container {
-                padding-bottom: .5em;
-            }
+        .list .item, .list .add-item-container {
+            padding-bottom: .5em;
+        }
 
-            .list .add-item-container, table .add-item-container {
-                text-align: right;
-            }
+        .list .add-item-container, table .add-item-container {
+            text-align: right;
+        }
 
         .ui-kendo .k-input {
             padding: .2em;
         }
 
-        .ui-kendo ul .form-group {
+        .ui-kendo ul .form-group, .ui-kendo div.item .form-group {
             float: left;
             padding-right: 1em;
         }
 
-        .ui-kendo ul .delete-item {
+        .ui-kendo ul .delete-item, .ui-kendo div.item .delete-item {
             float: left;
         }
 
-        .ui-kendo ul .item .form-group {
+        .ui-kendo ul .item .form-group, .ui-kendo div.item .form-group {
             padding-bottom: .5em;
         }
 
         .ui-kendo ul .item, .ui-kendo .add-item-container {
             clear: both;
+        }
+
+        .ui-kendo div.list .add-item-container {
+            padding: .5em;
+        }
+
+        span.glyphicon {
+            padding-right: .3em;
         }
     </style>
 
@@ -122,6 +130,16 @@
             <ul id="emptyListExample" class="list k-content"></ul>
         </div>
 
+        <h2>Div Example</h2>
+        <div class="k-widget">
+            <div id="divExample" class="list k-content">
+                @for (int i = 0; i < Model.DivItems.Count; i++)
+                {
+                    @Html.EditorFor(model => model.DivItems[i], "DynamicDivItemModel")
+                }
+            </div>
+        </div>
+
         <p>
             <button type="submit" class="btn btn-primary k-button">Save</button>
         </p>
@@ -149,6 +167,11 @@
                     list: {
                         container: "<div class='dynamic-list-container'><\/div>",
                         addItem: "<li class=\"add-item-container row\"><div class='col-md-12'><button class=\"add-item btn btn-default\"><span class='glyphicon glyphicon-plus'><\/span>{addLabel}<\/button><\/div><\/li>",
+                        removeItem: "<div class='col-md-4 text-right'><button type=\"button\" class=\"delete-item btn btn-danger\"><span class=\"glyphicon glyphicon-remove\"><\/span>{removeLabel}</button><\/div>"
+                    },
+                    div: {
+                        container: "<div class='dynamic-list-container'><\/div>",
+                        addItem: "<div class=\"add-item-container row\"><div class='col-md-12'><button class=\"add-item btn btn-default\"><span class='glyphicon glyphicon-plus'><\/span>{addLabel}<\/button><\/div><\/div>",
                         removeItem: "<div class='col-md-4 text-right'><button type=\"button\" class=\"delete-item btn btn-danger\"><span class=\"glyphicon glyphicon-remove\"><\/span>{removeLabel}</button><\/div>"
                     }
                 };
@@ -212,6 +235,26 @@
                     {
                         // Occurs after an item is removed from the list
                         $("#emptyListExample").after(" Item " + $("input:first", item).val() + " removed.");
+                    }
+                });
+
+            $("#divExample").dynamiclist(
+                {
+                    itemSelector: "div.item", // Selector for each item in the list
+                    addLabel: "Add", // Label for the add button
+                    removeLabel: "Remove", // Label for the remove button
+                    htmlFieldPrefix: "@ViewData.TemplateInfo.HtmlFieldPrefix", // ASP.NET MVC html field prefix
+                    property: "DivItems", // Model property that contains this list. Each item input is assumed to have a name of HtmlFieldPrefix.Property[index].BindingProperty
+                    newItemUrl: '@Url.Action("NewDivItem")', // Action url for the new item partial view. It should accept a htmlFieldPrefix parameter. E.g. Controller/Action?htmlFieldPrefix=Model.Property
+                    listType: "div", // list or table
+                    itemAdded: function (item)
+                    {
+                        // Occurs after an item is added to the list
+                    },
+                    itemRemoved: function (item)
+                    {
+                        // Occurs after an item is removed from the list
+                        $("#divExample").after(" Item " + $("input:first", item).val() + " removed.");
                     }
                 });
         });

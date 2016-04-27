@@ -8,5 +8,6 @@ namespace jquery.dynamiclist.Models
 
         public IList<DynamicListItemModel> ListItems { get; set; }
         public IList<DynamicListItemModel> TableItems { get; set; }
+        public IList<DynamicListItemModel> DivItems { get; set; }
     }
 }

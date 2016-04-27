@@ -21,7 +21,8 @@ namespace jquery.dynamiclist.Controllers
             {
                 Ui = ui ?? "bootstrap",
                 ListItems = listItems,
-                TableItems = tableItems
+                TableItems = tableItems,
+                DivItems = listItems
             };
             return View(model);
         }
@@ -47,6 +48,13 @@ namespace jquery.dynamiclist.Controllers
         }
 
         public PartialViewResult NewTableItem(string htmlFieldPrefix)
+        {
+            ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
+
+            return PartialView(new DynamicListItemModel());
+        }
+
+        public PartialViewResult NewDivItem(string htmlFieldPrefix)
         {
             ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
 

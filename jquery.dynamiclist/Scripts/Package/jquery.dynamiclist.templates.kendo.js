@@ -18,7 +18,7 @@
         },
         div: {
             container: "<div class='dynamic-list-container k-content'><\/div>",
-            addItem: "<li class=\"add-item-container k-header\"><button class=\"add-item k-button\">{addLabel}<\/button><\/li>",
+            addItem: "<div class=\"add-item-container k-header\"><button class=\"add-item k-button k-button-icontext\"><span class='k-icon k-i-plus'><\/span>{addLabel}<\/button><\/div>",
             removeItem: "<button type=\"button\" class=\"delete-item k-button k-button-icontext\"><span class='k-icon k-i-cancel'><\/span>{removeLabel}</button>"
         }
     };
