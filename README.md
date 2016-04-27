@@ -22,6 +22,7 @@ http://nuget.org/List/Packages/jQuery.Dynamiclist.Bootstrap
 - Added templates
 - newItemUrl option can now be a string or function
 
+### Example Usage
 
     <h2>List Example</h2>
     <ul id="listExample" class="list">
