@@ -1091,6 +1091,7 @@
     <Content Include="Scripts\kendo\2016.1.412\messages\kendo.messages.zh-TW.min.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\Package\jquery.dynamiclist.templates.bootstrap.js" />
+    <Content Include="Scripts\Package\jquery.dynamiclist.templates.bootstrap.min.js" />
     <Content Include="Scripts\Package\jquery.dynamiclist.templates.kendo.js" />
     <Content Include="Scripts\Package\jquery.dynamiclist.js" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
@@ -1103,6 +1104,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\Package\jquery.dynamiclist.min.js" />
+    <Content Include="Scripts\Package\jquery.dynamiclist.templates.kendo.min.js" />
     <Content Include="Scripts\Package\jquery.validate.unobtrusive.dynamic.js" />
     <Content Include="Scripts\Package\jquery.validate.unobtrusive.dynamic.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -1674,6 +1676,8 @@
     <Content Include="Scripts\kendo\2016.1.412\cultures\kendo.culture.af-ZA.min.js.map" />
     <Content Include="Views\Home\EditorTemplates\DynamicDivItemModel.cshtml" />
     <Content Include="Views\Home\NewDivItem.cshtml" />
+    <Content Include="Scripts\Package\jquery.dynamiclist.templates.bootstrap.min.js.map" />
+    <Content Include="Scripts\Package\jquery.dynamiclist.templates.kendo.min.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
