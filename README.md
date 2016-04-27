@@ -46,7 +46,7 @@ http://nuget.org/List/Packages/jQuery.Dynamiclist.Bootstrap
                 // ASP.NET MVC html field prefix
                 htmlFieldPrefix: "@ViewData.TemplateInfo.HtmlFieldPrefix",
                 // Model property that contains this list. Each item input is assumed to have a name of HtmlFieldPrefix.Property[index].BindingProperty
-                property: "Items",
+                property: "@Html.NameFor(m => m.Items)",
                 // Action url for the new item partial view. This can be a string or function. The url should accept a htmlFieldPrefix parameter. E.g. Controller/Action?htmlFieldPrefix=Model.Property
                 newItemUrl: "@Url.Action("NewListItem")",
                 // list, table, or div

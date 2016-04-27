@@ -90,13 +90,14 @@
 <div class="ui-@(Model.Ui)">
     @if (ViewBag.Success == true)
     {
-        <div class="alert alert-success k-state-highlight">
+        <div class="alert alert-success k-block k-success-colored">
             Save successful
         </div>
     }
     @Html.ValidationSummary(true)
     @using (Html.BeginForm())
     {
+        @Html.HiddenFor(m => m.Ui)
         <h2>Table Example</h2>
         <table id="tableExample" class="table table-striped">
             <thead>
@@ -127,7 +128,9 @@
 
         <h2>Empty List Example</h2>
         <div class="k-widget">
-            <ul id="emptyListExample" class="list k-content"></ul>
+            <ul id="emptyListExample" class="list k-content">
+                @Html.EditorFor(model => model.EmptyListItems)
+            </ul>
         </div>
 
         <h2>Div Example</h2>
@@ -183,7 +186,7 @@
                     addLabel: "Add", // Label for the add button
                     removeLabel: "Remove", // Label for the remove button
                     htmlFieldPrefix: "@ViewData.TemplateInfo.HtmlFieldPrefix", // ASP.NET MVC html field prefix
-                    property: "TableItems", // Model property that contains this list. Each item input is assumed to have a name of HtmlFieldPrefix.Property[index].BindingProperty
+                    property: "@Html.NameFor(m => m.TableItems)", // Model property that contains this list. Each item input is assumed to have a name of HtmlFieldPrefix.Property[index].BindingProperty
                     newItemUrl: '@Url.Action("NewTableItem")', // Action url for the new item partial view. It should accept a htmlFieldPrefix parameter. E.g. Controller/Action?htmlFieldPrefix=Model.Property
                     listType: "table", // list or table
                     itemAdded: function(item)
@@ -204,7 +207,7 @@
                     addLabel: "Add", // Label for the add button
                     removeLabel: "Remove", // Label for the remove button
                     htmlFieldPrefix: "@ViewData.TemplateInfo.HtmlFieldPrefix", // ASP.NET MVC html field prefix
-                    property: "ListItems", // Model property that contains this list. Each item input is assumed to have a name of HtmlFieldPrefix.Property[index].BindingProperty
+                    property: "@Html.NameFor(m => m.ListItems)", // Model property that contains this list. Each item input is assumed to have a name of HtmlFieldPrefix.Property[index].BindingProperty
                     newItemUrl: '@Url.Action("NewListItem")', // Action url for the new item partial view. It should accept a htmlFieldPrefix parameter. E.g. Controller/Action?htmlFieldPrefix=Model.Property
                     listType: "list", // list or table
                     itemAdded: function(item)
@@ -224,7 +227,7 @@
                     addLabel: "Add", // Label for the add button
                     removeLabel: "Remove", // Label for the remove button
                     htmlFieldPrefix: "@ViewData.TemplateInfo.HtmlFieldPrefix", // ASP.NET MVC html field prefix
-                    property: "EmptyListItems", // Model property that contains this list. Each item input is assumed to have a name of HtmlFieldPrefix.Property[index].BindingProperty
+                    property: "@Html.NameFor(m => m.EmptyListItems)", // Model property that contains this list. Each item input is assumed to have a name of HtmlFieldPrefix.Property[index].BindingProperty
                     newItemUrl: '@Url.Action("NewListItem")', // Action url for the new item partial view. It should accept a htmlFieldPrefix parameter. E.g. Controller/Action?htmlFieldPrefix=Model.Property
                     listType: "list", // list or table
                     itemAdded: function(item)
@@ -244,7 +247,7 @@
                     addLabel: "Add", // Label for the add button
                     removeLabel: "Remove", // Label for the remove button
                     htmlFieldPrefix: "@ViewData.TemplateInfo.HtmlFieldPrefix", // ASP.NET MVC html field prefix
-                    property: "DivItems", // Model property that contains this list. Each item input is assumed to have a name of HtmlFieldPrefix.Property[index].BindingProperty
+                    property: "@Html.NameFor(m => m.DivItems)", // Model property that contains this list. Each item input is assumed to have a name of HtmlFieldPrefix.Property[index].BindingProperty
                     newItemUrl: '@Url.Action("NewDivItem")', // Action url for the new item partial view. It should accept a htmlFieldPrefix parameter. E.g. Controller/Action?htmlFieldPrefix=Model.Property
                     listType: "div", // list or table
                     itemAdded: function (item)
