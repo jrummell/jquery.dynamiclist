@@ -7,6 +7,14 @@ gulp.task('uglify', function ()
         .pipe(uglify('jquery.dynamiclist.min.js', { outSourceMap: true }))
         .pipe(gulp.dest('scripts/package'));
 
+    gulp.src('scripts/package/jquery.dynamiclist.templates.bootstrap.js')
+        .pipe(uglify('jquery.dynamiclist.templates.bootstrap.min.js', { outSourceMap: true }))
+        .pipe(gulp.dest('scripts/package'));
+
+    gulp.src('scripts/package/jquery.dynamiclist.templates.kendo.js')
+        .pipe(uglify('jquery.dynamiclist.templates.kendo.min.js', { outSourceMap: true }))
+        .pipe(gulp.dest('scripts/package'));
+
     gulp.src('scripts/package/jquery.validate.unobtrusive.dynamic.js')
         .pipe(uglify('jquery.validate.unobtrusive.dynamic.min.js', {outSourceMap: true}))
         .pipe(gulp.dest('scripts/package'));
