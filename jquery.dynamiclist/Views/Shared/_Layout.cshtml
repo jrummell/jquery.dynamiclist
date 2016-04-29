@@ -24,14 +24,6 @@
     @RenderSection("styles", required: false)
 </head>
 <body>
-    <div>
-        Select a UI framework:
-        <select id="uiSelect">
-            <option value="bootstrap">bootstrap</option>
-            <option value="kendo">Kendo UI</option>
-        </select>
-    </div>
-
     <div class="container k-content">
         @RenderBody()
     </div>
@@ -48,18 +40,5 @@
     }
 
     @RenderSection("scripts", required: false)
-    <script type="text/javascript">
-        <!--
-            $(document).ready(function()
-            {
-                $("#uiSelect").val("@ui");
-
-                $("#uiSelect").change(function()
-                {
-                    window.location = "?ui=" + $(this).val();
-                });
-            });
-        // -->
-    </script>
 </body>
 </html>

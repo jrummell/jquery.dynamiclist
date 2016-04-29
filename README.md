@@ -21,6 +21,7 @@ http://nuget.org/List/Packages/jQuery.Dynamiclist.Bootstrap
 - Removed support for jquery ui and jquery mobile
 - Added templates
 - newItemUrl option can now be a string or function
+- Added add and remove methods
 
 ### Example Usage
 
@@ -33,6 +34,9 @@ http://nuget.org/List/Packages/jQuery.Dynamiclist.Bootstrap
     <script src="~/Scripts/jquery.dynamiclist.js" type="text/javascript"> </script>
     <script src="~/Scripts/jquery.dynamiclist.templates.bootstrap.js" type="text/javascript"> </script>
     <script type="text/javascript">
+    
+        // Initialize
+        
         $("#listExample").dynamiclist(
             {
                 // Selector for each item in the list
@@ -49,9 +53,9 @@ http://nuget.org/List/Packages/jQuery.Dynamiclist.Bootstrap
                 newItemUrl: "@Url.Action("NewListItem")",
                 // list, table, or div
                 listType: "list",
-                // Occurs after an item is added to the list
+                // Triggered after an item is added to the list
                 itemAdded: function (item) { },
-                // Occurs after an item is removed from the list
+                // Triggered after an item is removed from the list
                 itemRemoved: function (item) { },
                 // define custom templates if you need more control over the styling
                 templates : {
@@ -72,4 +76,14 @@ http://nuget.org/List/Packages/jQuery.Dynamiclist.Bootstrap
                     }
                 }
             });
+            
+            // Methods
+            
+            // add
+            $("#listExample").dynamiclist("add");
+            
+            // remove
+            var $firstItem = $("#listExample .item:first");
+            $("#listExample").dynamiclist("remove", $firstItem);
+            
     </script>

@@ -7,9 +7,12 @@
     var privateMethods = {
         addItem: function(e, options)
         {
-            e.preventDefault();
+            if (e)
+            {
+                e.preventDefault();
+            }
 
-            jQuery(e).prop("disabled", true);
+            options.addButton.prop("disabled", true);
 
             // build the html field prefix
             var index = privateMethods.getNewIndex(options.list, options.itemSelector);
@@ -64,6 +67,16 @@
                 }
             });
         },
+        removeItem: function(item, options)
+        {
+            var $item = $(item);
+            $item.remove();
+
+            if (options.itemRemoved)
+            {
+                options.itemRemoved($item);
+            }
+        },
         appendRemoveAndIndex: function($item, index, indexName, options)
         {
             /// <summary>Appends the remove button and hidden field for the item index.</summary>
@@ -89,12 +102,7 @@
             // IE7 has a problem with using this with live(), other wise I would use that instead
             jQuery(".delete-item", $item).click(function()
             {
-                $item.remove();
-
-                if (options.itemRemoved)
-                {
-                    options.itemRemoved($item);
-                }
+                privateMethods.removeItem($item, options);
             });
         },
         getBaseItemPrefix: function(baseHtmlFieldPrefix, property)
@@ -249,8 +257,15 @@
             return this.each(function()
             {
                 var $list = jQuery(this);
-                $list.find(".add-item").click();
+                privateMethods.addItem(null, $list.data("dynamiclist"));
             });
+        },
+        remove: function(item)
+        {
+            var $item = $(item);
+            var $wrapper = $(item).parents(".dynamic-list");
+            var options = $wrapper.data("dynamiclist");
+            privateMethods.removeItem($item, options);
         },
         destroy: function()
         {
