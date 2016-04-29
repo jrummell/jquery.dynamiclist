@@ -16,6 +16,8 @@ http://nuget.org/List/Packages/jQuery.Dynamiclist.Bootstrap
 
 [![Build status](https://ci.appveyor.com/api/projects/status/l2gcqej17f39sb8u?svg=true)](https://ci.appveyor.com/project/jrummell/jquery-dynamiclist)
 
+Live example: http://jquery-dynamiclist.azurewebsites.net/
+
 ### New in version 2.0
 
 - Removed support for jquery ui and jquery mobile
