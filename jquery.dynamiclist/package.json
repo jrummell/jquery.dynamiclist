@@ -9,7 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "gulp": "^3.9.1",
-    "gulp-uglifyjs": "^0.6.2"
+    "gulp": "3.9.1",
+    "gulp-uglifyjs": "0.6.2",
+    "gulp-eol" : "0.1.2"
   }
 }
