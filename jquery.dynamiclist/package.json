@@ -1,15 +1,19 @@
 {
-  "name": "jquery.dynamiclist",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "gulp": "^3.9.1",
-    "gulp-uglifyjs": "^0.6.2"
-  }
+    "name": "jquery.dynamiclist",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+
+    },
+    "devDependencies": {
+        "gulp": "^3.9.1",
+        "gulp-uglifyjs": "^0.6.2",
+        "gulp-eol": "0.1.2"
+    }
 }

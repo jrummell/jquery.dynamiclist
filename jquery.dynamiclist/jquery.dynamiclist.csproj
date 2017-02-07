@@ -530,9 +530,9 @@
     <Content Include="Content\kendo\2016.1.412\fonts\DejaVu\DejaVuSans-ExtraLight.ttf" />
     <Content Include="Content\kendo\2016.1.412\fonts\DejaVu\DejaVuSans-BoldOblique.ttf" />
     <Content Include="Content\kendo\2016.1.412\fonts\DejaVu\DejaVuSans-Bold.ttf" />
-    <None Include="Scripts\jquery-2.1.4.intellisense.js" />
-    <Content Include="Scripts\jquery-2.1.4.js" />
-    <Content Include="Scripts\jquery-2.1.4.min.js" />
+    <None Include="Scripts\jquery-2.2.4.intellisense.js" />
+    <Content Include="Scripts\jquery-2.2.4.js" />
+    <Content Include="Scripts\jquery-2.2.4.min.js" />
     <Content Include="Scripts\jquery-migrate-1.2.1.js" />
     <Content Include="Scripts\jquery-migrate-1.2.1.min.js" />
     <Content Include="Scripts\kendo\2016.1.412\angular.min.js" />
@@ -1094,7 +1094,7 @@
     <Content Include="Scripts\Package\jquery.dynamiclist.templates.bootstrap.min.js" />
     <Content Include="Scripts\Package\jquery.dynamiclist.templates.kendo.js" />
     <Content Include="Scripts\Package\jquery.dynamiclist.js" />
-    <Content Include="Scripts\jquery-2.1.4.min.map" />
+    <Content Include="Scripts\jquery-2.2.4.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
