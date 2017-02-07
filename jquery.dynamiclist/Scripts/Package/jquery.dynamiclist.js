@@ -239,12 +239,9 @@
 
                     if (options.itemAdded)
                     {
-                        $list.each(function (i, list)
+                        $(options.itemSelector, $list).each(function(i, item)
                         {
-                            $(list).each(function(j, item)
-                            {
-                                options.itemAdded(item);
-                            });
+                            options.itemAdded(item);
                         });
                     }
                 }
