@@ -58,12 +58,20 @@
                 }
 
                 options.addButton.prop("disabled", false);
-            }).error(function(xhr)
+            }).fail(function (xhr)
             {
                 if (xhr.status === 401)
                 {
                     // let the user know that their session timed out.
-                    alert("Your session has timed out. Please refresh the page and try again.");
+                    var message = "Your session has timed out. Please refresh the page and try again.";
+                    if (console && console.log)
+                    {
+                        console.log(message);
+                    }
+                    else
+                    {
+                        alert(message);
+                    }
                 }
             });
         },
@@ -74,12 +82,12 @@
             }
 
             var $item = $(item);
-            $item.remove();
 
-            if (options.itemRemoved)
-            {
+            if (options.itemRemoved) {
                 options.itemRemoved($item);
             }
+
+            $item.remove();
         },
         appendRemoveAndIndex: function($item, index, indexName, options)
         {
