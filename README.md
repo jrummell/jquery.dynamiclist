@@ -9,6 +9,8 @@ http://nuget.org/List/Packages/jQuery.Dynamiclist.Kendo
 
     PM> Install-Package jQuery.Dynamiclist.Kendo
 
+Note: Kendo UI is no longer a package dependency. You should either install it separately, or use their CDN.
+
 ## bootstrap
 http://nuget.org/List/Packages/jQuery.Dynamiclist.Bootstrap
 
@@ -24,6 +26,7 @@ Live example: http://jquery-dynamiclist.azurewebsites.net/
 - Added templates
 - newItemUrl option can now be a string or function
 - Added add and remove methods
+- Remove confirmation option that will display a confirm dialog if set
 
 ### Example Usage
 
