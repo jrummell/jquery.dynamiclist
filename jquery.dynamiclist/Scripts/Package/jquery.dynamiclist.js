@@ -69,6 +69,10 @@
         },
         removeItem: function(item, options)
         {
+            if (options.removeConfirmation && !confirm(options.removeConfirmation)) {
+                return;
+            }
+
             var $item = $(item);
             $item.remove();
 
@@ -100,8 +104,9 @@
 
             // delete button handler
             // IE7 has a problem with using this with live(), other wise I would use that instead
-            jQuery(".delete-item", $item).click(function()
+            jQuery(".delete-item", $item).click(function(e)
             {
+                e.preventDefault();
                 privateMethods.removeItem($item, options);
             });
         },
@@ -317,6 +322,8 @@
         itemAdded: function(item) { },
         // Occurs after an item is removed from the list
         itemRemoved: function (item) { },
+        // If defined, will display a confirmation dialog with the given message.
+        removeConfirmation: null,
         // define custom templates if you need more control over the styling
         templates : {
             table: {

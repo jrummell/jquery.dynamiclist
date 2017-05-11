@@ -1,9 +1,9 @@
-﻿/// <binding AfterBuild='uglify' />
+﻿/// <binding AfterBuild='default' />
 var gulp = require("gulp");
 var uglify = require("gulp-uglifyjs");
 var eol = require("gulp-eol");
 
-gulp.task("uglify", function ()
+gulp.task("default", function ()
 {
     gulp.src("scripts/package/jquery.dynamiclist.js")
         .pipe(uglify("jquery.dynamiclist.min.js", { outSourceMap: true }))
