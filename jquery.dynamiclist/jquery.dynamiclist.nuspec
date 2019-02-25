@@ -10,7 +10,7 @@
     <description>A jQuery plugin for MVC that supports adding and removing items from a list Model.</description>
     <tags>jquery plugin list</tags>
     <dependencies>
-      <dependency id="Microsoft.jQuery.Unobtrusive.Validation" version="3.4.1" />
+      <dependency id="Microsoft.jQuery.Unobtrusive.Validation" version="3.0.0" />
     </dependencies>
   </metadata>
   <files>
