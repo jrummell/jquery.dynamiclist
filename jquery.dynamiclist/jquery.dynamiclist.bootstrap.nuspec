@@ -11,7 +11,7 @@
     <tags>jquery bootstrap plugin list</tags>
     <dependencies>
       <dependency id="jQuery.Dynamiclist" version="2.0.0" />
-      <dependency id="bootstrap" version="3.0.0" />
+      <dependency id="bootstrap" version="3.4.1" />
     </dependencies>
   </metadata>
   <files>
