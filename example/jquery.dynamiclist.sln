@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9B921E44-B514-47FD-83C2-202C60187A8A}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jquery.dynamiclist.web", "jquery.dynamiclist.web\jquery.dynamiclist.web.csproj", "{6FA89EED-F053-4357-BE9A-8BA048AF4564}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6FA89EED-F053-4357-BE9A-8BA048AF4564}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FA89EED-F053-4357-BE9A-8BA048AF4564}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FA89EED-F053-4357-BE9A-8BA048AF4564}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6FA89EED-F053-4357-BE9A-8BA048AF4564}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6FA89EED-F053-4357-BE9A-8BA048AF4564}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6FA89EED-F053-4357-BE9A-8BA048AF4564}.Debug|x86.Build.0 = Debug|Any CPU
+		{6FA89EED-F053-4357-BE9A-8BA048AF4564}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FA89EED-F053-4357-BE9A-8BA048AF4564}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FA89EED-F053-4357-BE9A-8BA048AF4564}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6FA89EED-F053-4357-BE9A-8BA048AF4564}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6FA89EED-F053-4357-BE9A-8BA048AF4564}.Release|x86.ActiveCfg = Release|Any CPU
+		{6FA89EED-F053-4357-BE9A-8BA048AF4564}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A3B6DDE6-2D1A-4C48-AEDE-AA310B77B733}
+	EndGlobalSection
+EndGlobal

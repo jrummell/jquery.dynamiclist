@@ -1,0 +1,55 @@
+﻿@{
+    string ui = ViewBag.Ui;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <link rel="stylesheet" type="text/css" href="~/Content/Site.css"/>
+
+    @if (ui == "kendo")
+    {
+        <link rel="stylesheet" type="text/css" href="//kendo.cdn.telerik.com/2016.1.412/styles/kendo.common.min.css" />
+        <link rel="stylesheet" type="text/css" href="//kendo.cdn.telerik.com/2016.1.412/styles/kendo.default.min.css" />
+    }
+    else if (ui == "bootstrap")
+    {
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    }
+
+    @RenderSection("styles", required: false)
+</head>
+<body>
+    <div class="container k-content">
+        @RenderBody()
+    </div>
+
+    <script src="//code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"
+            integrity="sha256-sPB0F50YUDK0otDnsfNHawYmA5M0pjjUf4TvRJkGFrI="
+            crossorigin="anonymous"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"
+            integrity="sha256-9GycpJnliUjJDVDqP0UEu/bsm9U+3dnQUH8+3W10vkY="
+            crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/jquery-ajax-unobtrusive@3.2.6/dist/jquery.unobtrusive-ajax.min.js"
+            integrity="sha256-PAC000yuHt78nszJ2RO0OiDMu/uLzPLRlYTk8J3AO10="
+            crossorigin="anonymous"></script>
+    @if (ui == "kendo")
+    {
+        <script src="//kendo.cdn.telerik.com/2016.1.412/js/kendo.ui.core.min.js"></script>
+    }
+    else if (ui == "bootstrap")
+    {
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    }
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

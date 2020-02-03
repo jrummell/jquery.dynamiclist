@@ -1,0 +1,37 @@
+{
+  "name": "jquery-dynamiclist",
+  "version": "2.2.0",
+  "description": "A Kendo UI plugin for MVC that supports adding and removing items from a list model.",
+  "main": "src/jquery.dynamiclist.js",
+  "scripts": {
+    "build": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jrummell/jquery.dynamiclist.git"
+  },
+  "keywords": [
+    "jquery",
+    "plugin",
+    "list",
+    "dynamic"
+  ],
+  "author": "John Rummell",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jrummell/jquery.dynamiclist/issues"
+  },
+  "homepage": "https://github.com/jrummell/jquery.dynamiclist#readme",
+  "dependencies": {
+    "jquery": ">=2.0.0",
+    "jquery-ajax-unobtrusive": ">=3.0.0",
+    "jquery-validation": ">=1.0.0",
+    "jquery-validation-unobtrusive": ">=3.0.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-eol": "0.1.2",
+    "gulp-uglifyjs": "^0.6.2",
+    "kendo-ui-core": "^2020.1.115"
+  }
+}
