@@ -1,6 +1,6 @@
 {
   "name": "jquery-dynamiclist",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "A Kendo UI plugin for MVC that supports adding and removing items from a list model.",
   "main": "src/jquery.dynamiclist.js",
   "scripts": {
