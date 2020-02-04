@@ -35,6 +35,9 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
+- task: UseNode@1
+  inputs:
+
 - task: Npm@1
   displayName: npm install
   inputs:
