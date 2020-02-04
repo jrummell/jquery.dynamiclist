@@ -33,7 +33,7 @@ Note: Kendo UI is no longer a package dependency. You should either install it s
 
 [![Build Status](https://dev.azure.com/jrummell/jquery.dynamiclist/_apis/build/status/jrummell.jquery.dynamiclist?branchName=master)](https://dev.azure.com/jrummell/jquery.dynamiclist/_build/latest?definitionId=1&branchName=master)
 
-Live example: <http://jquery-dynamiclist.azurewebsites.net/>
+Live example: <https://jquery-dynamiclist.azurewebsites.net/>
 
 ## New in version 2.0
 
