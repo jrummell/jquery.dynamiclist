@@ -13,7 +13,7 @@ pr:
 - releases/*
 
 pool:
-  name: default
+  name: Default
 
 variables:
   solution: './example/**/*.sln'
