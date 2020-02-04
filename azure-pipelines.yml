@@ -13,7 +13,7 @@ pr:
 - releases/*
 
 pool:
-  vmImage: 'windows-latest'
+  name: default
 
 variables:
   solution: './example/**/*.sln'
