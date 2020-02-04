@@ -3,7 +3,7 @@
 # Add steps that publish symbols, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
 
-name: 2.2.0
+name: 2.2.0$(Rev:.r)
 
 trigger:
 - master
@@ -13,7 +13,7 @@ pr:
 - releases/*
 
 pool:
-  vmImage: 'windows-latest'
+  name: Default
 
 variables:
   solution: './example/**/*.sln'
@@ -35,13 +35,31 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
+- task: UseNode@1
+  inputs:
+    version: '10.x'
+
 - task: Npm@1
+  displayName: npm install
   inputs:
     command: 'install'
     workingDir: '$(projectSource)'
 
 - task: Npm@1
+  displayName: npm install -g gulp-cli
+  inputs:
+    command: 'custom'
+    customCommand: 'install -g gulp-cli'
+
+- task: Npm@1
+  displayName: npm build
   inputs:
     command: 'custom'
     workingDir: '$(projectSource)'
     customCommand: 'run build'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
