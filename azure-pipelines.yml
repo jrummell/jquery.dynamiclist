@@ -36,11 +36,19 @@ steps:
     configuration: '$(buildConfiguration)'
 
 - task: Npm@1
+  displayName: npm install
   inputs:
     command: 'install'
     workingDir: '$(projectSource)'
 
 - task: Npm@1
+  displayName: npm install -g gulp
+  inputs:
+    command: 'custom'
+    customCommand: 'install -g gulp-cli'
+
+- task: Npm@1
+  displayName: npm build
   inputs:
     command: 'custom'
     workingDir: '$(projectSource)'
