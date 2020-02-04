@@ -4,7 +4,9 @@
   "description": "A Kendo UI plugin for MVC that supports adding and removing items from a list model.",
   "main": "src/jquery.dynamiclist.js",
   "scripts": {
-    "build": "gulp"
+    "build": "gulp",
+    "version": "npm run build && git add -A .",
+    "bump-version": "npm version patch -m \"version bump %s\""
   },
   "repository": {
     "type": "git",
@@ -18,6 +20,7 @@
   ],
   "author": "John Rummell",
   "license": "ISC",
+  "readme": "./README.md",
   "bugs": {
     "url": "https://github.com/jrummell/jquery.dynamiclist/issues"
   },

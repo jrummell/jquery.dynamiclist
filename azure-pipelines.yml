@@ -42,7 +42,7 @@ steps:
     workingDir: '$(projectSource)'
 
 - task: Npm@1
-  displayName: npm install -g gulp
+  displayName: npm install -g gulp-cli
   inputs:
     command: 'custom'
     customCommand: 'install -g gulp-cli'
