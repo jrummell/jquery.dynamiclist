@@ -1,8 +1,8 @@
 /// <binding />
-var gulp = require("gulp");
-var uglify = require("gulp-uglifyjs");
-var eol = require("gulp-eol");
-var merge = require("merge-stream");
+const gulp = require("gulp");
+const uglify = require("gulp-uglifyjs");
+const eol = require("gulp-eol");
+const merge = require("merge-stream");
 
 gulp.task("default", function () {
     const dist = "dist";
