@@ -104,6 +104,10 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="node_modules\jquery-dynamiclist\src\jquery.dynamiclist.js" />
+    <Content Include="node_modules\jquery-dynamiclist\src\jquery.dynamiclist.templates.bootstrap.js" />
+    <Content Include="node_modules\jquery-dynamiclist\src\jquery.dynamiclist.templates.kendo.js" />
+    <Content Include="node_modules\jquery-dynamiclist\src\jquery.validate.unobtrusive.dynamic.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.dynamic.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
