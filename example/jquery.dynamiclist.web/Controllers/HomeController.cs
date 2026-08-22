@@ -1,5 +1,5 @@
-﻿using System.Web.Mvc;
-using jquery.dynamiclist.Models;
+using System.Web.Mvc;
+using jquery.dynamiclist.web.Models;
 
 namespace jquery.dynamiclist.Controllers
 {
