@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace jquery.dynamiclist
+namespace jquery.dynamiclist.web
 {
     public class FilterConfig
     {
