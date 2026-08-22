@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
-namespace jquery.dynamiclist.Models
+namespace jquery.dynamiclist.web.Models
 {
     public class DynamicListItemModel
     {

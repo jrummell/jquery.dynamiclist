@@ -16,7 +16,7 @@ pool:
   name: Default
 
 variables:
-  solution: './example/**/*.sln'
+  solution: 'example\jquery.dynamiclist.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
   projectSource: './src'
@@ -28,16 +28,9 @@ steps:
   inputs:
     restoreSolution: '$(solution)'
 
-- task: VSBuild@1
-  inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-
 - task: UseNode@1
   inputs:
-    version: '10.x'
+    version: '22.x'
 
 - task: Npm@1
   displayName: npm install
@@ -57,6 +50,20 @@ steps:
     command: 'custom'
     workingDir: '$(projectSource)'
     customCommand: 'run build'
+
+- task: Npm@1
+  displayName: npm install
+  inputs:
+    command: 'install'
+    workingDir: 'example\jquery.dynamiclist.web'
+
+- task: VSBuild@1
+  inputs:
+    solution: '$(solution)'
+    vsVersion: 'latest'
+    msbuildArgs: '/p:VisualStudioVersion=18.0 /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
 
 - task: PublishBuildArtifacts@1
   inputs:

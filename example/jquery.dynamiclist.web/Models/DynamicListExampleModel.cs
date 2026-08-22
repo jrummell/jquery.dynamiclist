@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace jquery.dynamiclist.Models
+namespace jquery.dynamiclist.web.Models
 {
     public class DynamicListExampleModel
     {
