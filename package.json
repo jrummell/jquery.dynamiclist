@@ -41,6 +41,6 @@
     "gulp-sourcemaps": "2.6.5",
     "gulp-terser": "2.1.0",
     "kendo-ui-core": "2020.1.115",
-    "prettier": "^3.9.6"
+    "prettier": "3.9.6"
   }
 }
