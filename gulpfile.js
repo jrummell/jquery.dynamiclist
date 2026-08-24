@@ -1,37 +1,42 @@
 /// <binding />
 const gulp = require("gulp");
-const uglify = require("gulp-uglifyjs");
+const terser = require("gulp-terser");
+const rename = require("gulp-rename");
+const sourcemaps = require("gulp-sourcemaps");
 const eol = require("gulp-eol");
-const merge = require("merge-stream");
 
-gulp.task("default", function () {
-    const dist = "dist";
-    const minified = merge(
-        gulp.src("src/jquery.dynamiclist.js")
-            .pipe(uglify("jquery.dynamiclist.min.js", { outSourceMap: true }))
+const dist = "dist";
+
+function minify(src, minName) {
+    return function () {
+        return gulp
+            .src(src)
+            .pipe(sourcemaps.init())
+            .pipe(terser())
+            .pipe(rename(minName))
+            .pipe(sourcemaps.write("."))
             .pipe(eol())
-            .pipe(gulp.dest(dist)),
+            .pipe(gulp.dest(dist));
+    };
+}
 
-        gulp.src("src/jquery.dynamiclist.templates.bootstrap.js")
-            .pipe(uglify("jquery.dynamiclist.templates.bootstrap.min.js", { outSourceMap: true }))
-            .pipe(eol())
-            .pipe(gulp.dest(dist)),
+gulp.task(
+    "default",
+    gulp.parallel(
+        minify("src/jquery.dynamiclist.js", "jquery.dynamiclist.min.js"),
+        minify(
+            "src/jquery.dynamiclist.templates.bootstrap.js",
+            "jquery.dynamiclist.templates.bootstrap.min.js"
+        ),
+        minify(
+            "src/jquery.dynamiclist.templates.kendo.js",
+            "jquery.dynamiclist.templates.kendo.min.js"
+        ),
+        minify(
+            "src/jquery.validate.unobtrusive.dynamic.js",
+            "jquery.validate.unobtrusive.dynamic.min.js"
+        )
+    )
+);
 
-        gulp.src("src/jquery.dynamiclist.templates.kendo.js")
-            .pipe(uglify("jquery.dynamiclist.templates.kendo.min.js", { outSourceMap: true }))
-            .pipe(eol())
-            .pipe(gulp.dest(dist)),
 
-        gulp.src("src/jquery.validate.unobtrusive.dynamic.js")
-            .pipe(uglify("jquery.validate.unobtrusive.dynamic.min.js", { outSourceMap: true }))
-            .pipe(eol())
-            .pipe(gulp.dest(dist))
-    );
-
-    const exampleDest = "./example/jquery.dynamiclist.web/Scripts";
-
-    const copied = gulp.src("src/*.js")
-        .pipe(gulp.dest(exampleDest));
-
-    return merge(minified, copied);
-});
