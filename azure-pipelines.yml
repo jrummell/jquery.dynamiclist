@@ -27,7 +27,7 @@ steps:
   inputs:
     version: '24.x'
 
-- script: npm ci
+- script: npm ci --ignore-scripts
   displayName: Restore npm dependencies
   workingDirectory: '$(Build.SourcesDirectory)'
 
