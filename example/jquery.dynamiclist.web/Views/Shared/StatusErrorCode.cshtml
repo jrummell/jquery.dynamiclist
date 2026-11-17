@@ -1,0 +1,28 @@
+@model int
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Error</title>
+</head>
+<body>
+    <h2>
+        Sorry, an error occurred while processing your request.
+    </h2>
+    @if (Model == 404)
+    {
+        <p>The requested page could not be found.</p>
+    }
+    else if (Model == 403)
+    {
+        <p>You do not have permission to access this resource.</p>
+    }
+    else
+    {
+        <p>Status code: @Model</p>
+    }
+</body>
+</html>

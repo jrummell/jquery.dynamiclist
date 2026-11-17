@@ -1,11 +1,11 @@
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using jquery.dynamiclist.web.Models;
 
 namespace jquery.dynamiclist.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index(string ui)
+        public IActionResult Index(string? ui)
         {
             var listItems = new[]
                             {
@@ -28,7 +28,7 @@ namespace jquery.dynamiclist.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(DynamicListExampleModel model)
+        public IActionResult Index(DynamicListExampleModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -40,25 +40,29 @@ namespace jquery.dynamiclist.Controllers
             return View(model);
         }
 
-        public PartialViewResult NewListItem(string htmlFieldPrefix)
+        public PartialViewResult NewListItem(string? htmlFieldPrefix)
         {
-            ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
+            ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix ?? string.Empty;
 
             return PartialView(new DynamicListItemModel());
         }
 
-        public PartialViewResult NewTableItem(string htmlFieldPrefix)
+        public PartialViewResult NewTableItem(string? htmlFieldPrefix)
         {
-            ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
+            ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix ?? string.Empty;
 
             return PartialView(new DynamicListItemModel());
         }
 
-        public PartialViewResult NewDivItem(string htmlFieldPrefix)
+        public PartialViewResult NewDivItem(string? htmlFieldPrefix)
         {
-            ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix;
+            ViewData.TemplateInfo.HtmlFieldPrefix = htmlFieldPrefix ?? string.Empty;
 
             return PartialView(new DynamicListItemModel());
         }
+
+        public IActionResult Error() => View("Error");
+
+        public IActionResult StatusErrorCode(int code) => View("StatusErrorCode", code);
     }
 }

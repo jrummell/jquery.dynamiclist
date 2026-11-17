@@ -1,11 +1,11 @@
-﻿@model DynamicListItemModel
+@model DynamicListItemModel
 <li class="item row">
     <div class="form-group col-md-4">
-        @Html.TextBoxFor(model => model.Id, new {@class = "form-control k-input" })
-        @Html.ValidationMessageFor(model => model.Id)
+        <input asp-for="Id" type="text" data-val-number="The field Id must be a number." class="form-control k-input" />
+        <span asp-validation-for="Id"></span>
     </div>
     <div class="form-group col-md-4">
-        @Html.TextBoxFor(model => model.Name, new { @class = "form-control k-input" })
-        @Html.ValidationMessageFor(model => model.Name)
+        <input asp-for="Name" type="text" class="form-control k-input" />
+        <span asp-validation-for="Name"></span>
     </div>
 </li>
