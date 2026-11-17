@@ -8,7 +8,7 @@ pr:
 - releases/*
 
 pool:
-  name: Default
+  vmImage: windows-latest
 
 variables:
   solution: 'example\jquery.dynamiclist.sln'
