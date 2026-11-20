@@ -42,5 +42,8 @@
     "gulp-terser": "2.1.0",
     "kendo-ui-core": "2020.1.115",
     "prettier": "3.9.6"
+  },
+  "overrides": {
+    "decode-uri-component": "0.5.1"
   }
 }
